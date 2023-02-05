@@ -1,0 +1,138 @@
+
+.wrapAuthorForm {
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.wrapAuthorFormContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px 72px 60px;
+    gap: 48px;
+
+    position: absolute;
+    width: 424px;
+    height: 544px;
+    left: 508px;
+    top: 160px;
+
+    background: #FFFFFF;
+    /* shadow */
+
+    box-shadow: 0 12px 26px rgba(232, 233, 236, 0.57);
+    border-radius: 24px;
+}
+.wrapAuthorFormContainerHead {
+    width: 123px;
+    height: 28px;
+    /* Title / Medium_20 */
+    font-family: 'GilroyLight';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    /* identical to box height, or 140% */
+    text-align: center;
+    /* Grayscale/800 */
+    color: #0B1332;
+    margin: 0 0 0 0;
+}
+.wrapAuthorFormContainerMiddle {
+    width: 280px;
+    height: 164px;
+}
+.wrapAuthorFormContainerMiddleLabel, .wrapAuthorFormContainerMiddleLabelPassword {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    /* Caption / Regular_12 */
+    font-family: 'GilroyLight';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    /* identical to box height, or 133% */
+    /* Grayscale/800 */
+    color: #0B1332;
+    margin: 0 0 0 0;
+}
+.wrapAuthorFormContainerMiddleLabelPassword {
+    margin-top: 28px;
+}
+input {
+    width: 260px;
+    border-radius: 12px;
+    height: 48px;
+    background: #F2F3F4;
+    border-width: 0;
+    padding: 0 0 0 20px;
+}
+.wrapAuthorFormContainerMiddleLabelInput, .wrapAuthorFormContainerMiddleLabelPasswordInput {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /*padding: 14px 20px;*/
+    gap: 10px; /**/
+    /* Grayscale / 200 */
+    background-color: #F2F3F4;
+    border-radius: 12px;
+    font-family: 'GilroyLight'; /**/
+    font-style: normal;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.wrapAuthorFormContainerBottom {
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapAuthorFormContainerBottomBtn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 20px;
+    gap: 10px;
+    border-width: 0;
+    width: 280px;
+    height: 52px;
+    background: #E5EBFF;
+    border-radius: 12px;
+    font-family: 'GilroyLight'; /**/
+    font-style: normal;
+    font-size: 14px;
+    color: #FFFFFF;
+}
+.wrapAuthorFormContainerBottomText {
+    display: flex;
+    flex-direction: row;
+    margin-top: 36px;
+}
+
+.wrapAuthorFormContainerBottomTextLeft {
+    width: 125px;
+    height: 20px;
+    font-family: 'GilroyLight';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 20px;
+    color: #0B1332;
+    margin: 0;
+}
+.wrapAuthorFormContainerBottomTextRight{
+    width: 139px;
+    height: 20px;
+    font-family: 'GilroyLight';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 20px;
+    color: #466EFA;
+    margin-left: 8px;
+}

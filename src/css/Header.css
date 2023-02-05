@@ -1,37 +1,26 @@
 
-@font-face {
-    font-family: 'GilroyLight';
-    src: url('../fonts/Gilroy-Light.eot');
-    src: local('☺'), url('../fonts/Gilroy-Light.woff') format('woff'), url('../fonts/Gilroy-Light.ttf') format('truetype'), url('../fonts/Gilroy-Light.svg') format('svg');
-    font-weight: 500;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'GilroyBold';
-    src: url('../fonts/Gilroy-ExtraBold.eot');
-    src: local('☺'), url('../fonts/Gilroy-ExtraBold.woff') format('woff'), url('../fonts/Gilroy-ExtraBold.ttf') format('truetype'), url('../fonts/Gilroy-ExtraBold.svg') format('svg');
-    font-weight: 700;
-    font-style: normal;
-}
-
 .wrapHeader {
     width: 1400px;
-    background-color: grey;
+    background-color: white;
+    border-bottom: 1px solid #EFEFEF;
 }
 
 .wrapHeaderLogo {
-    height: 43px;
-    margin: 19px 0 0 110px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: row;
     align-items: center;
+    align-items: center;
+    padding: 20px 120px;
+    gap: 16px;
+
 }
 .wrapHeaderLogoImg {
     width: 22px;
     height: 22px;
 }
 .wrapHeaderText {
+    margin: 0 0 0 0;
     font-family: 'GilroyLight';
     font-style: normal;
     font-weight: 500;
