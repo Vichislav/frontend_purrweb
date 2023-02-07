@@ -1,5 +1,6 @@
 /*import '../css/Reset.css'*/
 import '../css/AuthorForm.css'
+import { Link } from 'react-router-dom'
 
 
 function AuthorForm() {
@@ -25,7 +26,7 @@ function AuthorForm() {
                   </button>
                   <div className="wrap__Container_Bottom_Text">
                       <p className="wrap__Container_Bottom_Text_Left">Ещё нет аккаунта?</p>
-                      <a className="wrap__Container_Bottom_Text_Right">Зарегестрироваться</a>
+                      <Link to="/registration" className="wrap__Container_Bottom_Text_Right">Зарегестрироваться</Link>
                   </div>
               </div>
           </div>
