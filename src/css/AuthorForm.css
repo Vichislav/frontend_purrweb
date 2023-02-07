@@ -1,12 +1,12 @@
 
-.wrapAuthorForm {
+.wrap {
     width: 100%;
     background-color: white;
     display: flex;
     justify-content: center;
 }
 
-.wrapAuthorFormContainer {
+.wrap__Container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,7 +25,7 @@
     box-shadow: 0 12px 26px rgba(232, 233, 236, 0.57);
     border-radius: 24px;
 }
-.wrapAuthorFormContainerHead {
+.wrap__Container_Head {
     width: 123px;
     height: 28px;
     /* Title / Medium_20 */
@@ -40,11 +40,11 @@
     color: #0B1332;
     margin: 0 0 0 0;
 }
-.wrapAuthorFormContainerMiddle {
+.wrap__Container_Middle {
     width: 280px;
     height: 164px;
 }
-.wrapAuthorFormContainerMiddleLabel, .wrapAuthorFormContainerMiddleLabelPassword {
+.wrap__Container_Middle_Label, .wrap__Container_Middle_Label_Password {
     width: 100%;
     height: auto;
     display: flex;
@@ -60,7 +60,7 @@
     color: #0B1332;
     margin: 0 0 0 0;
 }
-.wrapAuthorFormContainerMiddleLabelPassword {
+.wrap__Container_Middle_Label_Password {
     margin-top: 28px;
 }
 input {
@@ -71,7 +71,7 @@ input {
     border-width: 0;
     padding: 0 0 0 20px;
 }
-.wrapAuthorFormContainerMiddleLabelInput, .wrapAuthorFormContainerMiddleLabelPasswordInput {
+.wrap__Container_Middle_Input, .wrap__Container_Middle_Password_Input {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -86,12 +86,12 @@ input {
     line-height: 20px;
 }
 
-.wrapAuthorFormContainerBottom {
+.wrap__Container_Bottom {
     display: flex;
     flex-direction: column;
 }
 
-.wrapAuthorFormContainerBottomBtn {
+.wrap__Container_Bottom_Btn {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -108,13 +108,13 @@ input {
     font-size: 14px;
     color: #FFFFFF;
 }
-.wrapAuthorFormContainerBottomText {
+.wrap__Container_Bottom_Text {
     display: flex;
     flex-direction: row;
     margin-top: 36px;
 }
 
-.wrapAuthorFormContainerBottomTextLeft {
+.wrap__Container_Bottom_Text_Left {
     width: 125px;
     height: 20px;
     font-family: 'GilroyLight';
@@ -125,7 +125,7 @@ input {
     color: #0B1332;
     margin: 0;
 }
-.wrapAuthorFormContainerBottomTextRight{
+.wrap__Container_Bottom_Text_Right{
     width: 139px;
     height: 20px;
     font-family: 'GilroyLight';
