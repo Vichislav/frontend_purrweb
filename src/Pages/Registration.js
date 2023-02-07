@@ -1,10 +1,10 @@
 
-
+import RegistrationForm from "../Components/RegistrationForm";
 
 function Registration() {
     return (
-        <div className="App">
-            Im different pages, im seriously
+        <div>
+            <RegistrationForm/>
         </div>
     );
 }
