@@ -10,13 +10,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 80px 72px 60px;
+    padding: 80px 72px 60px; /**размер надо менять */
     gap: 48px;
 
     position: absolute;
     width: 424px;
     height: 544px;
-    left: 508px;
+    left: 508px; /**размер надо менять */
     top: 160px;
 
     background: #FFFFFF;
@@ -107,7 +107,13 @@ input {
     font-style: normal;
     font-size: 14px;
     color: #FFFFFF;
+    cursor: pointer;
 }
+
+button:hover {
+    background-color: #466EFA;
+}
+
 .wrap__Container_Bottom_Text {
     display: flex;
     flex-direction: row;
