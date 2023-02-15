@@ -10,13 +10,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 80px 72px 60px; /**размер надо менять */
-    gap: 48px;
+    /*padding: 80px 72px 60px; !**размер надо менять *!
+    gap: 48px;*/
 
     position: absolute;
     width: 424px;
     height: 544px;
-    left: 508px; /**размер надо менять */
+   /* left: 508px; !**размер надо менять *!*/
     top: 160px;
 
     background: #FFFFFF;
@@ -38,13 +38,16 @@
     text-align: center;
     /* Grayscale/800 */
     color: #0B1332;
-    margin: 0 0 0 0;
+    margin: 80px 0 0 0;
 }
 .wrap__Container_Middle {
+    margin-top: 48px; /*вместо gap*/
     width: 280px;
-    height: 164px;
+    height: 184px; /*164 было до дива с ошибкой на 20*/
 }
 .wrap__Container_Middle_Label, .wrap__Container_Middle_Label_Password {
+    position: relative;
+    z-index: 0;
     width: 100%;
     height: auto;
     display: flex;
@@ -60,6 +63,20 @@
     color: #0B1332;
     margin: 0 0 0 0;
 }
+.wrap__Container_Middle_Cross {
+    position: absolute;
+    z-index: 2;
+    width: 10px;
+    height: auto;
+    left: 250px;
+    top: 35px;
+    cursor: pointer;
+}
+
+.cross_Block {
+    display: none;
+}
+
 .wrap__Container_Middle_Label_Password {
     margin-top: 28px;
 }
@@ -72,11 +89,13 @@ input {
     padding: 0 0 0 20px;
 }
 .wrap__Container_Middle_Input, .wrap__Container_Middle_Password_Input {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: row;
     align-items: center;
     /*padding: 14px 20px;*/
-    gap: 10px; /**/
+    /*gap: 10px;*/ /**/
     /* Grayscale / 200 */
     background-color: #F2F3F4;
     border-radius: 12px;
@@ -86,9 +105,24 @@ input {
     line-height: 20px;
 }
 
+.wrap__Container_Middle_Error {
+    margin-top: 4px;
+    width: 280px;
+    height: 20px;
+}
+
+.wrap__Container_Middle_Error_text {
+    font-family: 'GilroyLight'; /**/
+    font-style: normal;
+    font-size: 14px;
+    line-height: 20px;
+    color: #F46666;
+}
+
 .wrap__Container_Bottom {
     display: flex;
     flex-direction: column;
+    margin-top: 24px; /*вместо gap*/
 }
 
 .wrap__Container_Bottom_Btn {
@@ -97,7 +131,6 @@ input {
     justify-content: center;
     align-items: center;
     padding: 14px 20px;
-    gap: 10px;
     border-width: 0;
     width: 280px;
     height: 52px;
