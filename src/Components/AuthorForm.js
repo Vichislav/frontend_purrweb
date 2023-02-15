@@ -1,10 +1,10 @@
 /*import '../css/Reset.css'*/
-import '../css/AuthorForm.css'
-import { Link } from 'react-router-dom'
+import '../css/AuthorForm.css';
+import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
-import cross from '../Assets/cross.svg'
+import cross from '../Assets/cross.svg';
 import eye from "../Assets/eye.svg";
-import {type} from "@testing-library/user-event/dist/type";
+import eye_open from "../Assets/eye_open.svg";
 
 
 function AuthorForm() {
@@ -12,25 +12,42 @@ function AuthorForm() {
     const {
         register, /*позволяет регистрировать поля для формы*/
         formState: {
-            errors, isValid, isDirty,
+            errors, isValid, isDirty, dirtyFields,
         },
         handleSubmit, /*пропускает метод (onSubmit) только если нет errors*/
         reset, /*метод очистки формы после отправки*/
         resetField,
     } = useForm({
-        mode: "onBlur" /*проверяет инпут при смене фокуса*/
+        mode: "onBlur", /*проверяет инпут при смене фокуса*/
+        defaultValues: { /* должно быть что бы  dirtyFields работало*/
+            email: '',
+            password: '',
+        }
     });
 
     const showEmailCross = () => {
         document.getElementById('crossEmail').classList.remove('cross_Block')
     }
 
+    const showPasswordCross = () => {
+        document.getElementById('crossPassword').classList.remove('cross_Block')
+    }
+
+    const showPasswordEye = () => {
+        document.getElementById('eye').classList.remove('cross_Block')
+    }
+
     const passwordVisible = () => {
        const passAtr = document.getElementById('input_pas')
         if (passAtr.type === "password") {
-            passAtr.type = "text";
+            passAtr.type = "text"; /*открываем текст*/
+            document.getElementById('eye_img').classList.add('cross_Block')
+            document.getElementById('eye_open_img').classList.remove('cross_Block')
+
         } else {
-            passAtr.type = "password";
+            passAtr.type = "password"; /*закрываем текст*/
+            document.getElementById('eye_open_img').classList.add('cross_Block')
+            document.getElementById('eye_img').classList.remove('cross_Block')
         }
     }
     const clearPassword = () => {
@@ -41,14 +58,12 @@ function AuthorForm() {
         resetField('email')
     }
 
-    const test = () => {
-        console.log('test work')
-    }
-
     const onSubmit = (data) => {
         alert(JSON.stringify(data))
         reset();
-        document.getElementById('crossEmail').classList.add('cross_Block')
+        document.getElementById('crossEmail').classList.add('cross_Block');
+        document.getElementById('crossPassword').classList.add('cross_Block');
+        document.getElementById('eye').classList.add('cross_Block');
     }
 
     return (
@@ -76,19 +91,26 @@ function AuthorForm() {
                   <label className="wrap__Container_Middle_Label_Password">
                       Пароль
                       <input {...register('password',
-                          {required: "Error!"}
+                          {required: "Error!", maxLength: 8, minLength: 8 },
                       )}
                           id="input_pas" type="text" className="wrap__Container_Middle_Password_Input"
                              placeholder="введите 8 значный пароль"/>
                       <div className="wrap__Container_Middle_Label_Password_Btn">
-                          <div id="eye" className="wrap__Container_Middle_Eye " onClick={passwordVisible}>
+                          <div id="eye" className="wrap__Container_Middle_Eye cross_Block" onClick={passwordVisible}>
                               <img
-                                  className="wrap__Container_Middle_img"
+                                  id="eye_img"
+                                  className="wrap__Container_Middle_img cross_Block"
                                   src={eye}
                                   alt="eay not found"
                               />
+                              <img
+                                  id="eye_open_img"
+                                  className="wrap__Container_Middle_img_open "
+                                  src={eye_open}
+                                  alt="eay not found"
+                              />
                           </div>
-                          <div id="crossPassword" className="wrap__Container_Middle_Cross_Pas" onClick={clearPassword}>
+                          <div id="crossPassword" className="wrap__Container_Middle_Cross_Pas cross_Block" onClick={clearPassword}>
                               <img
                                   className="wrap__Container_Middle_img"
                                   src={cross}
@@ -100,7 +122,8 @@ function AuthorForm() {
                   <div className="wrap__Container_Middle_Error">
                       {errors?.email && <p className="wrap__Container_Middle_Error_text">{errors?.email?.message || "Неверная почта или пароль"}</p>}
                       {errors?.email && showEmailCross()}
-                      {}
+                      {errors?.password && showPasswordCross()}
+                      {dirtyFields?.password && showPasswordEye()}
                   </div>
               </div>
               <div className="wrap__Container_Bottom">
