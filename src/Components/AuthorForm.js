@@ -3,7 +3,8 @@ import '../css/AuthorForm.css'
 import { Link } from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import cross from '../Assets/cross.svg'
-import purrweb_logo from "../Assets/purrweb_logo.svg";
+import eye from "../Assets/eye.svg";
+import {type} from "@testing-library/user-event/dist/type";
 
 
 function AuthorForm() {
@@ -22,6 +23,18 @@ function AuthorForm() {
 
     const showEmailCross = () => {
         document.getElementById('crossEmail').classList.remove('cross_Block')
+    }
+
+    const passwordVisible = () => {
+       const passAtr = document.getElementById('input_pas')
+        if (passAtr.type === "password") {
+            passAtr.type = "text";
+        } else {
+            passAtr.type = "password";
+        }
+    }
+    const clearPassword = () => {
+        resetField('password')
     }
 
     const clearEmail = () => {
@@ -62,12 +75,32 @@ function AuthorForm() {
                   </label>
                   <label className="wrap__Container_Middle_Label_Password">
                       Пароль
-                      <input type="text" className="wrap__Container_Middle_Password_Input"
+                      <input {...register('password',
+                          {required: "Error!"}
+                      )}
+                          id="input_pas" type="text" className="wrap__Container_Middle_Password_Input"
                              placeholder="введите 8 значный пароль"/>
+                      <div className="wrap__Container_Middle_Label_Password_Btn">
+                          <div id="eye" className="wrap__Container_Middle_Eye " onClick={passwordVisible}>
+                              <img
+                                  className="wrap__Container_Middle_img"
+                                  src={eye}
+                                  alt="eay not found"
+                              />
+                          </div>
+                          <div id="crossPassword" className="wrap__Container_Middle_Cross_Pas" onClick={clearPassword}>
+                              <img
+                                  className="wrap__Container_Middle_img"
+                                  src={cross}
+                                  alt="cross not found"
+                              />
+                          </div>
+                      </div>
                   </label>
                   <div className="wrap__Container_Middle_Error">
                       {errors?.email && <p className="wrap__Container_Middle_Error_text">{errors?.email?.message || "Неверная почта или пароль"}</p>}
                       {errors?.email && showEmailCross()}
+                      {}
                   </div>
               </div>
               <div className="wrap__Container_Bottom">

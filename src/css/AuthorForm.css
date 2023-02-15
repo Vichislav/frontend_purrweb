@@ -76,7 +76,31 @@
 .cross_Block {
     display: none;
 }
+.wrap__Container_Middle_Label_Password_Btn { /*для креста и глаза*/
+    position: absolute;
+    left: 213px;
+    top: 30px;
+    z-index: 1;
+    width: 47px;
+    height: 19px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
 
+}
+.wrap__Container_Middle_Eye {
+    width: 20px;
+    height: auto;
+    cursor: pointer;
+    order: 2;
+}
+.wrap__Container_Middle_Cross_Pas {
+    width: 10px;
+    height: auto;
+    cursor: pointer;
+    margin-left: 16px;
+    order: 1;
+}
 .wrap__Container_Middle_Label_Password {
     margin-top: 28px;
 }
