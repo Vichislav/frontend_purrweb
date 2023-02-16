@@ -175,8 +175,8 @@ input {
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #466EFA;
+button:active {
+    background-color: #1245fa;
 }
 
 .wrap__Container_Bottom_Text {

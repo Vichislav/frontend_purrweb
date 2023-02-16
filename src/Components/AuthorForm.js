@@ -12,7 +12,7 @@ function AuthorForm() {
     const {
         register, /*позволяет регистрировать поля для формы*/
         formState: {
-            errors, isValid, isDirty, dirtyFields,
+            errors, isValid, isDirty, dirtyFields, isValidating,
         },
         handleSubmit, /*пропускает метод (onSubmit) только если нет errors*/
         reset, /*метод очистки формы после отправки*/
@@ -25,17 +25,24 @@ function AuthorForm() {
         }
     });
 
+
     const showEmailCross = () => {
-        document.getElementById('crossEmail').classList.remove('cross_Block')
+        document.getElementById('crossEmail').classList.remove('cross_Block');
+        document.getElementById('input_email').classList.add('red_border');
     }
 
     const showPasswordCross = () => {
         document.getElementById('crossPassword').classList.remove('cross_Block')
+        document.getElementById('input_pas').classList.add('red_border');
+        if (!document.querySelectorAll('.wrap__Container_Middle_Error_text').length) {
+            return <p className="wrap__Container_Middle_Error_text">"Неверная почта или пароль"</p>;
+        }
     }
 
     const showPasswordEye = () => {
         document.getElementById('eye').classList.remove('cross_Block')
     }
+
 
     const passwordVisible = () => {
        const passAtr = document.getElementById('input_pas')
@@ -58,11 +65,21 @@ function AuthorForm() {
         resetField('email')
     }
 
+    const onValid = () => {
+        document.querySelector('.wrap__Container_Bottom_Btn').style.backgroundColor = "#466EFA"
+        document.getElementById('input_pas').classList.remove('red_border');
+        document.getElementById('input_email').classList.remove('red_border');
+        document.getElementById('crossEmail').classList.add('cross_Block');
+        document.getElementById('crossPassword').classList.add('cross_Block');
+    }
+
+    const notValid = () => {
+        document.querySelector('.wrap__Container_Bottom_Btn').style.backgroundColor = "#E5EBFF"
+    }
+
     const onSubmit = (data) => {
         alert(JSON.stringify(data))
         reset();
-        document.getElementById('crossEmail').classList.add('cross_Block');
-        document.getElementById('crossPassword').classList.add('cross_Block');
         document.getElementById('eye').classList.add('cross_Block');
     }
 
@@ -78,7 +95,7 @@ function AuthorForm() {
                                  pattern: /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
                              }
                       )}
-                             type="text" className="wrap__Container_Middle_Input"
+                             id="input_email" type="text" className="wrap__Container_Middle_Input"
                       placeholder="example@mail.ru"/>
                       <div id="crossEmail" className="wrap__Container_Middle_Cross cross_Block" onClick={clearEmail}>
                           <img
@@ -120,13 +137,15 @@ function AuthorForm() {
                       </div>
                   </label>
                   <div className="wrap__Container_Middle_Error">
-                      {errors?.email && <p className="wrap__Container_Middle_Error_text">{errors?.email?.message || "Неверная почта или пароль"}</p>}
+                      {errors?.email && <p className="wrap__Container_Middle_Error_text">"Неверная почта или пароль"</p>}
                       {errors?.email && showEmailCross()}
                       {errors?.password && showPasswordCross()}
                       {dirtyFields?.password && showPasswordEye()}
                   </div>
               </div>
               <div className="wrap__Container_Bottom">
+                  {isValid && onValid()}
+                  {!isValid && notValid()}
                   <button type="submit"  className="wrap__Container_Bottom_Btn" disabled={!isValid}>
                       Продолжить
                   </button>
