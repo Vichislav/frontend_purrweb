@@ -156,7 +156,9 @@ input {
     flex-direction: column;
     margin-top: 24px; /*вместо gap*/
 }
-
+.wrap__Container_Bottom_Link {
+    text-decoration: none;
+}
 .wrap__Container_Bottom_Btn {
     display: flex;
     flex-direction: row;

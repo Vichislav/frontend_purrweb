@@ -1,10 +1,10 @@
 
-import RegistrationForm from "../Components/RegistrationForm";
+import OwnDataForm from "../Components/OwnDataForm.js";
 
 function OwnData() {
     return (
         <div>
-            <RegistrationForm/>
+            <OwnDataForm/>
         </div>
     );
 }

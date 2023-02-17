@@ -25,6 +25,7 @@ function AuthorForm() {
         }
     });
 
+    let dirtyCount = false;
 
     const showEmailCross = () => {
         document.getElementById('crossEmail').classList.remove('cross_Block');
@@ -65,16 +66,29 @@ function AuthorForm() {
         resetField('email')
     }
 
+    const onDirty = () => { /*вызывается если isDirty: true*/
+        dirtyCount = true;
+        console.log("dirtyCount" + dirtyCount)
+    }
+
     const onValid = () => {
-        document.querySelector('.wrap__Container_Bottom_Btn').style.backgroundColor = "#466EFA"
-        document.getElementById('input_pas').classList.remove('red_border');
-        document.getElementById('input_email').classList.remove('red_border');
-        document.getElementById('crossEmail').classList.add('cross_Block');
-        document.getElementById('crossPassword').classList.add('cross_Block');
+        console.log("onValid WORK")
+        if (dirtyCount) {
+            document.querySelector('.wrap__Container_Bottom_Btn').style.backgroundColor = "#466EFA"
+            document.getElementById('input_pas').classList.remove('red_border');
+            document.getElementById('input_email').classList.remove('red_border');
+            document.getElementById('crossEmail').classList.add('cross_Block');
+            document.getElementById('crossPassword').classList.add('cross_Block');
+        }
     }
 
     const notValid = () => {
-        document.querySelector('.wrap__Container_Bottom_Btn').style.backgroundColor = "#E5EBFF"
+        console.log("notValid WORK")
+        let elem = document.querySelector('.wrap__Container_Bottom_Btn');
+        if (!elem == null) { /*он не успевает его найти он еще не отрисовался... поэтому и проверяем*/
+           elem.style.backgroundColor = "#E5EBFF";
+        }
+
     }
 
     const onSubmit = (data) => {
@@ -144,17 +158,20 @@ function AuthorForm() {
                   </div>
               </div>
               <div className="wrap__Container_Bottom">
-                  {isValid && onValid()}
-                  {!isValid && notValid()}
-                  <button type="submit"  className="wrap__Container_Bottom_Btn" disabled={!isValid}>
-                      Продолжить
-                  </button>
+                  <Link to="/OwnData" className="wrap__Container_Bottom_Link" >
+                      <button type="submit"  className="wrap__Container_Bottom_Btn" disabled={!isValid}>
+                          Продолжить
+                      </button>
+                  </Link>
                   <div className="wrap__Container_Bottom_Text">
                       <p className="wrap__Container_Bottom_Text_Left">Ещё нет аккаунта?</p>
                       <Link to="/registration" className="wrap__Container_Bottom_Text_Right">Зарегестрироваться</Link>
                   </div>
               </div>
           </form>
+            {isDirty && onDirty()}
+            {isValid && onValid()}
+            {!isValid && notValid()}
         </div>
     );
 }

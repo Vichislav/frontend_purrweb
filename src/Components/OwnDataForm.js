@@ -5,7 +5,7 @@ import '../css/AuthorForm.css'
 import { Link } from 'react-router-dom'
 
 
-function RegistrationForm() {
+function OwnDataForm() {
     return (
         <div className="wrap">
             <div className="wrap__backBtn">
@@ -44,4 +44,4 @@ function RegistrationForm() {
     );
 }
 
-export default RegistrationForm;
+export default OwnDataForm;
