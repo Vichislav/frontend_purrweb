@@ -77,6 +77,10 @@
     border: 1px solid #F46666;
 }
 
+.green_border {
+    border: 1px solid #17BC77;
+}
+
 .cross_Block {
     display: none;
 }

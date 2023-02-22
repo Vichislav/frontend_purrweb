@@ -58,6 +58,7 @@ function AuthorForm() {
             document.getElementById('eye_img').classList.remove('cross_Block')
         }
     }
+
     const clearPassword = () => {
         resetField('password')
     }

@@ -7,6 +7,7 @@ import {useForm} from "react-hook-form";
 import cross from "../Assets/cross.svg";
 import eye from "../Assets/eye.svg";
 import eye_open from "../Assets/eye_open.svg";
+import mark from "../Assets/green_mark.svg";
 
 
 function RegistrationForm() {
@@ -30,6 +31,12 @@ function RegistrationForm() {
     let dirtyCount = false;
 
     const showEmailCross = () => {
+        /*чистим от зеленого, если оно есть*/
+        if (document.getElementById('markEmail')) {
+            document.getElementById('markEmail').classList.add('cross_Block');
+            document.getElementById('input_email').classList.remove('green_border');
+        }
+        /*красим в красное*/
         document.getElementById('crossEmail').classList.remove('cross_Block');
         document.getElementById('input_email').classList.add('red_border');
     }
@@ -46,6 +53,24 @@ function RegistrationForm() {
         document.getElementById('eye').classList.remove('cross_Block')
     }
 
+    const showSecondPasswordCross = () => {
+        document.getElementById('crossSecondPassword').classList.remove('cross_Block')
+        document.getElementById('input_second_pas').classList.add('red_border');
+        if (!document.querySelectorAll('.wrap__Container_Middle_Error_text').length) {
+            return <p className="wrap__Container_Middle_Error_text">"Пароли не совпадают"</p>;
+        }
+    }
+
+    const hideSecondPasswordCross = () => {
+        if (document.getElementById('crossSecondPassword')) {
+            document.getElementById('crossSecondPassword').classList.add('cross_Block')
+            document.getElementById('input_second_pas').classList.remove('red_border');
+        }
+    }
+
+    const showPasswordSecondEye = () => {
+        document.getElementById('eye_second').classList.remove('cross_Block')
+    }
 
     const passwordVisible = () => {
         const passAtr = document.getElementById('input_pas')
@@ -60,6 +85,21 @@ function RegistrationForm() {
             document.getElementById('eye_img').classList.remove('cross_Block')
         }
     }
+
+    const secondPasswordVisible = () => {
+        const passAtr = document.getElementById('input_second_pas')
+        if (passAtr.type === "password") {
+            passAtr.type = "text"; /*открываем текст*/
+            document.getElementById('eye_second_img').classList.add('cross_Block')
+            document.getElementById('eye_second_open_img').classList.remove('cross_Block')
+
+        } else {
+            passAtr.type = "password"; /*закрываем текст*/
+            document.getElementById('eye_second_open_img').classList.add('cross_Block')
+            document.getElementById('eye_second_img').classList.remove('cross_Block')
+        }
+    }
+
     const clearPassword = () => {
         resetField('password')
     }
@@ -68,13 +108,16 @@ function RegistrationForm() {
         resetField('email')
     }
 
+
+    const clearSecondPassword = () => {
+        resetField('password_again')
+    }
+
     const onDirty = () => { /*вызывается если isDirty: true*/
         dirtyCount = true;
-        console.log("dirtyCount" + dirtyCount)
     }
 
     const onValid = () => {
-        console.log("onValid WORK")
         if (dirtyCount) {
             document.querySelector('.wrap__Container_Bottom_Btn').style.backgroundColor = "#466EFA"
             document.getElementById('input_pas').classList.remove('red_border');
@@ -85,12 +128,24 @@ function RegistrationForm() {
     }
 
     const notValid = () => {
-        console.log("notValid WORK")
         let elem = document.querySelector('.wrap__Container_Bottom_Btn');
         if (!elem == null) { /*он не успевает его найти он еще не отрисовался... поэтому и проверяем*/
             elem.style.backgroundColor = "#E5EBFF";
         }
 
+    }
+
+    const showGreenBorder = () => {
+        /*чистим от красного, если оно есть*/
+        if(document.getElementById('crossEmail')) {
+            document.getElementById('crossEmail').classList.add('cross_Block');
+            document.getElementById('input_email').classList.remove('red_border');
+        }
+        /*красим в зеленный, если оно отрисовалось*/
+        if (dirtyCount) {
+            document.getElementById('markEmail').classList.remove('cross_Block');
+            document.getElementById('input_email').classList.add('green_border');
+        }
     }
 
     const onSubmit = (data) => {
@@ -119,6 +174,13 @@ function RegistrationForm() {
                                 className="wrap__Container_Middle_img"
                                 src={cross}
                                 alt="cross not found"
+                            />
+                        </div>
+                        <div id="markEmail" className="wrap__Container_Middle_Cross cross_Block" onClick={clearEmail}>
+                            <img
+                                className="wrap__Container_Middle_img"
+                                src={mark}
+                                alt="mark not found"
                             />
                         </div>
                     </label>
@@ -156,33 +218,34 @@ function RegistrationForm() {
                     <div className="wrap__Container_Middle_Error">
                         {errors?.email && <p className="wrap__Container_Middle_Error_text">"Неверная почта или пароль"</p>}
                         {errors?.email && showEmailCross()}
+                        {!errors?.email && showGreenBorder()}
                         {errors?.password && showPasswordCross()}
                         {dirtyFields?.password && showPasswordEye()}
                     </div>
                     <label className="wrap__Container_Middle_Label_Password_Again">
                         Повтор пароля
-                        <input type="text" className="wrap__Container_Middle_Password_Input"
+                        <input id="input_second_pas" type="text" className="wrap__Container_Middle_Password_Input"
                                {...register('password_again',
                                    { validate: (value, formValues) => value === getValues('password') },
 
                                )}
                                placeholder="Повторите пароль"/>
                         <div className="wrap__Container_Middle_Label_Password_Btn">
-                            <div id="eye" className="wrap__Container_Middle_Eye cross_Block" onClick={passwordVisible}>
+                            <div id="eye_second" className="wrap__Container_Middle_Eye cross_Block" onClick={secondPasswordVisible}>
                                 <img
-                                    id="eye_img"
+                                    id="eye_second_img"
                                     className="wrap__Container_Middle_img cross_Block"
                                     src={eye}
                                     alt="eay not found"
                                 />
                                 <img
-                                    id="eye_open_img"
+                                    id="eye_second_open_img"
                                     className="wrap__Container_Middle_img_open "
                                     src={eye_open}
                                     alt="eay not found"
                                 />
                             </div>
-                            <div id="crossPassword" className="wrap__Container_Middle_Cross_Pas cross_Block" onClick={clearPassword}>
+                            <div id="crossSecondPassword" className="wrap__Container_Middle_Cross_Pas cross_Block" onClick={clearSecondPassword}>
                                 <img
                                     className="wrap__Container_Middle_img"
                                     src={cross}
@@ -192,7 +255,9 @@ function RegistrationForm() {
                         </div>
                     </label>
                     <div className="wrap__Container_Middle_Error">
-                        {errors.password_again && <p className="wrap__Container_Middle_Error_text">"Пароли не совпадают"</p>}
+                        {errors?.password_again && showSecondPasswordCross()}
+                        {dirtyFields?.password_again && showPasswordSecondEye()}
+                        {!errors?.password_again && hideSecondPasswordCross()}
                     </div>
                 </div>
                 <div className="wrap__Container_Bottom">
