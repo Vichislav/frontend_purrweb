@@ -81,6 +81,9 @@
     border: 1px solid #17BC77;
 }
 
+.hiddenDiv {
+    visibility: hidden;
+}
 .cross_Block {
     display: none;
 }

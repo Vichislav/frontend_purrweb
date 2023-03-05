@@ -27,16 +27,43 @@ function AuthorForm() {
 
     let dirtyCount = false;
 
-    const showEmailCross = () => {
-        document.getElementById('crossEmail').classList.remove('cross_Block');
-        document.getElementById('input_email').classList.add('red_border');
+    const onDirty = () => { /*вызывается если isDirty: true*/
+        dirtyCount = true;
+        console.log("onDirty WORK???? dirtyCount = " + dirtyCount)
     }
 
+    /*Error in Email*/
+    const showEmailCross = () => {
+        document.getElementById('crossEmail').classList.remove('cross_Block'); /*показали крестик*/
+        document.getElementById('input_email').classList.add('red_border'); /*покрасили рамку в красный*/
+        document.getElementById('errorText').classList.remove('hiddenDiv'); /*показали сообщение*/
+    }
+    /*Email is correct*/
+    const ValidEmail = () => {
+        console.log("ValidEmail PREwork")
+        console.log("dirtyCount" + dirtyCount)
+        if (dirtyCount) {
+            console.log("ValidEmail work")
+            document.getElementById('input_email').classList.remove('red_border'); /*убираем красную рамку*/
+            document.getElementById('crossEmail').classList.add('cross_Block');/*убираем крестик*/
+        }
+    }
+
+    /*Error in Password*/
     const showPasswordCross = () => {
-        document.getElementById('crossPassword').classList.remove('cross_Block')
-        document.getElementById('input_pas').classList.add('red_border');
-        if (!document.querySelectorAll('.wrap__Container_Middle_Error_text').length) {
-            return <p className="wrap__Container_Middle_Error_text">"Неверная почта или пароль"</p>;
+        document.getElementById('crossPassword').classList.remove('cross_Block')/*показали крестик*/
+        document.getElementById('input_pas').classList.add('red_border');/*покрасили рамку в красный*/
+        document.getElementById('errorText').classList.remove('hiddenDiv'); /*показали сообщение*/
+    }
+
+    /*Password is correct*/
+    const ValidPassword = () => {
+        console.log("ValidPassword PREwork")
+        console.log("dirtyCount" + dirtyCount)
+        if (dirtyCount) {
+            console.log("ValidPassword work")
+            document.getElementById('input_pas').classList.remove('red_border'); /*убираем красную рамку*/
+            document.getElementById('crossPassword').classList.add('cross_Block'); /*убираем крестик*/
         }
     }
 
@@ -67,27 +94,19 @@ function AuthorForm() {
         resetField('email')
     }
 
-    const onDirty = () => { /*вызывается если isDirty: true*/
-        dirtyCount = true;
-        console.log("dirtyCount" + dirtyCount)
-    }
-
     const onValid = () => {
         console.log("onValid WORK")
         if (dirtyCount) {
             document.querySelector('.wrap__Container_Bottom_Btn').style.backgroundColor = "#466EFA"
-            document.getElementById('input_pas').classList.remove('red_border');
-            document.getElementById('input_email').classList.remove('red_border');
-            document.getElementById('crossEmail').classList.add('cross_Block');
-            document.getElementById('crossPassword').classList.add('cross_Block');
+            document.getElementById('errorText').classList.add('hiddenDiv');
         }
     }
 
     const notValid = () => {
-        console.log("notValid WORK")
         let elem = document.querySelector('.wrap__Container_Bottom_Btn');
         if (!elem == null) { /*он не успевает его найти он еще не отрисовался... поэтому и проверяем*/
            elem.style.backgroundColor = "#E5EBFF";
+            console.log("notValid WORK")
         }
 
     }
@@ -152,9 +171,12 @@ function AuthorForm() {
                       </div>
                   </label>
                   <div className="wrap__Container_Middle_Error">
-                      {errors?.email && <p className="wrap__Container_Middle_Error_text">"Неверная почта или пароль"</p>}
+                      <p id={'errorText'} className="wrap__Container_Middle_Error_text hiddenDiv">"Неверная почта или пароль"</p>
+                      {isDirty && onDirty()}
                       {errors?.email && showEmailCross()}
+                      {!errors?.email && ValidEmail()}
                       {errors?.password && showPasswordCross()}
+                      {!errors?.password && ValidPassword()}
                       {dirtyFields?.password && showPasswordEye()}
                   </div>
               </div>
@@ -170,7 +192,6 @@ function AuthorForm() {
                   </div>
               </div>
           </form>
-            {isDirty && onDirty()}
             {isValid && onValid()}
             {!isValid && notValid()}
         </div>

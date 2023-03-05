@@ -176,7 +176,7 @@ function RegistrationForm() {
                                 alt="cross not found"
                             />
                         </div>
-                        <div id="markEmail" className="wrap__Container_Middle_Cross cross_Block" onClick={clearEmail}>
+                        <div id="markEmail" className="wrap__Container_Middle_Cross cross_Block">
                             <img
                                 className="wrap__Container_Middle_img"
                                 src={mark}
@@ -216,6 +216,7 @@ function RegistrationForm() {
                         </div>
                     </label>
                     <div className="wrap__Container_Middle_Error">
+                        {isDirty && onDirty()}
                         {errors?.email && <p className="wrap__Container_Middle_Error_text">"Неверная почта или пароль"</p>}
                         {errors?.email && showEmailCross()}
                         {!errors?.email && showGreenBorder()}
@@ -272,7 +273,6 @@ function RegistrationForm() {
                     </div>
                 </div>
             </form>
-            {isDirty && onDirty()}
             {isValid && onValid()}
             {!isValid && notValid()}
         </div>
