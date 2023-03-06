@@ -5,7 +5,7 @@
     flex-direction: column;
     align-items: center;
     /*padding: 80px 72px 60px;*/
-    gap: 48px;
+    /*gap: 48px;*/
 
     position: absolute;
     width: 424px;
@@ -21,8 +21,9 @@
 }
 
 .wrap__Container_Middle_reg {
+    margin-top: 48px; /*вместо gap*/
     width: 280px;
-    height: 260px;
+    height: 280px;
 }
 
 .wrap__Container_Bottom_Text_reg {
@@ -56,4 +57,34 @@
 }
 .wrap__Container_Middle_Label_Password_Again {
 
+}
+
+/*текста ошибок*/
+.wrap__Container_Error {
+    font-family: 'GilroyLight'; /**/
+    font-style: normal;
+    font-size: 12px;
+    line-height: 15px;
+    color: #F46666;
+    margin-top: 4px;
+}
+.wrap__Container_Middle_Password,
+.wrap__Container_Middle_Email,
+.wrap__Container_Middle_SecPassword {
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    /* Caption / Regular_12 */
+    font-family: 'GilroyLight';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    /* identical to box height, or 133% */
+    /* Grayscale/800 */
+    color: #0B1332;
+    margin: 8px 0 0 0;
 }

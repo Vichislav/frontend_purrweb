@@ -31,22 +31,25 @@ function RegistrationForm() {
     let dirtyCount = false;
 
     const showEmailCross = () => {
-        /*чистим от зеленого, если оно есть*/
+        /*убираем крестик, чистим от зеленого, если оно есть*/
         if (document.getElementById('markEmail')) {
             document.getElementById('markEmail').classList.add('cross_Block');
             document.getElementById('input_email').classList.remove('green_border');
         }
-        /*красим в красное*/
+        /*показываем крестик, красим в красное*/
         document.getElementById('crossEmail').classList.remove('cross_Block');
         document.getElementById('input_email').classList.add('red_border');
+        /*показываем сообщение об ошибке*/
+        document.getElementById('EmailErrorText').classList.remove('hiddenDiv');
     }
 
     const showPasswordCross = () => {
+        /*показываем крестик, красим в красное*/
         document.getElementById('crossPassword').classList.remove('cross_Block')
         document.getElementById('input_pas').classList.add('red_border');
-        if (!document.querySelectorAll('.wrap__Container_Middle_Error_text').length) {
-            return <p className="wrap__Container_Middle_Error_text">"Неверная почта или пароль"</p>;
-        }
+
+        /*показываем сообщение об ошибке*/
+        document.getElementById('PasErrorText').classList.remove('hiddenDiv');
     }
 
     const showPasswordEye = () => {
@@ -54,18 +57,21 @@ function RegistrationForm() {
     }
 
     const showSecondPasswordCross = () => {
+        /*показываем крестик, красим в красное*/
         document.getElementById('crossSecondPassword').classList.remove('cross_Block')
         document.getElementById('input_second_pas').classList.add('red_border');
-        if (!document.querySelectorAll('.wrap__Container_Middle_Error_text').length) {
-            return <p className="wrap__Container_Middle_Error_text">"Пароли не совпадают"</p>;
-        }
+        /*показываем сообщение об ошибке*/
+        document.getElementById('2PasErrorText').classList.remove('hiddenDiv');
     }
 
     const hideSecondPasswordCross = () => {
+        /*убираем крестик если он есть*/
         if (document.getElementById('crossSecondPassword')) {
             document.getElementById('crossSecondPassword').classList.add('cross_Block')
             document.getElementById('input_second_pas').classList.remove('red_border');
         }
+        /*скрываем сообщение об ошибке*/
+        document.getElementById('2PasErrorText').classList.add('hiddenDiv');
     }
 
     const showPasswordSecondEye = () => {
@@ -120,10 +126,9 @@ function RegistrationForm() {
     const onValid = () => {
         if (dirtyCount) {
             document.querySelector('.wrap__Container_Bottom_Btn').style.backgroundColor = "#466EFA"
-            document.getElementById('input_pas').classList.remove('red_border');
             document.getElementById('input_email').classList.remove('red_border');
             document.getElementById('crossEmail').classList.add('cross_Block');
-            document.getElementById('crossPassword').classList.add('cross_Block');
+
         }
     }
 
@@ -135,7 +140,7 @@ function RegistrationForm() {
 
     }
 
-    const showGreenBorder = () => {
+    const ValidEmail = () => {
         /*чистим от красного, если оно есть*/
         if(document.getElementById('crossEmail')) {
             document.getElementById('crossEmail').classList.add('cross_Block');
@@ -146,6 +151,23 @@ function RegistrationForm() {
             document.getElementById('markEmail').classList.remove('cross_Block');
             document.getElementById('input_email').classList.add('green_border');
         }
+        /*скрываем сообщение об ошибке*/
+        document.getElementById('EmailErrorText').classList.add('hiddenDiv');
+    }
+
+    const ValidPassword = () => {
+        /*чистим от красного, если оно есть*/
+        if(document.getElementById('crossPassword')) {
+            document.getElementById('crossPassword').classList.add('cross_Block');
+            document.getElementById('input_pas').classList.remove('red_border');
+        }
+        /*красим в зеленный, если оно отрисовалось*/
+       /* if (dirtyCount) {
+            document.getElementById('markEmail').classList.remove('cross_Block');
+            document.getElementById('input_email').classList.add('green_border');
+        }*/
+        /*скрываем сообщение об ошибке*/
+        document.getElementById('PasErrorText').classList.add('hiddenDiv');
     }
 
     const onSubmit = (data) => {
@@ -160,7 +182,7 @@ function RegistrationForm() {
             <form onSubmit={handleSubmit(onSubmit)} className="wrap__Container_reg">
                 <p className="wrap__Container_Head">Регистрация</p>
                 <div className="wrap__Container_Middle_reg">
-                    <label className="wrap__Container_Middle_Label">
+                    <label className="wrap__Container_Middle_Email">
                         Элетронная почта
                         <input {...register('email',
                             {required: "Error!",
@@ -184,7 +206,8 @@ function RegistrationForm() {
                             />
                         </div>
                     </label>
-                    <label className="wrap__Container_Middle_Label_Password">
+                    <p id={'EmailErrorText'} className="wrap__Container_Error hiddenDiv">"Почта не корректна"</p>
+                    <label className="wrap__Container_Middle_Password">
                         Пароль
                         <input {...register('password',
                             {required: "Error!", maxLength: 8, minLength: 8 },
@@ -215,15 +238,16 @@ function RegistrationForm() {
                             </div>
                         </div>
                     </label>
+                    <p id={'PasErrorText'} className="wrap__Container_Error hiddenDiv">"Пароль должен содержать 8 симоволов"</p>
                     <div className="wrap__Container_Middle_Error">
                         {isDirty && onDirty()}
-                        {errors?.email && <p className="wrap__Container_Middle_Error_text">"Неверная почта или пароль"</p>}
                         {errors?.email && showEmailCross()}
-                        {!errors?.email && showGreenBorder()}
+                        {!errors?.email && ValidEmail()}
                         {errors?.password && showPasswordCross()}
+                        {!errors?.password && ValidPassword()}
                         {dirtyFields?.password && showPasswordEye()}
                     </div>
-                    <label className="wrap__Container_Middle_Label_Password_Again">
+                    <label className="wrap__Container_Middle_SecPassword">
                         Повтор пароля
                         <input id="input_second_pas" type="text" className="wrap__Container_Middle_Password_Input"
                                {...register('password_again',
@@ -255,6 +279,7 @@ function RegistrationForm() {
                             </div>
                         </div>
                     </label>
+                    <p id={'2PasErrorText'} className="wrap__Container_Error hiddenDiv">"Пароли не совпадают"</p>
                     <div className="wrap__Container_Middle_Error">
                         {errors?.password_again && showSecondPasswordCross()}
                         {dirtyFields?.password_again && showPasswordSecondEye()}

@@ -144,9 +144,9 @@ input {
 }
 
 .wrap__Container_Middle_Error {
-    margin-top: 4px;
+    /*margin-top: 4px;
     width: 280px;
-    height: 20px;
+    height: 0px;*/
 }
 
 .wrap__Container_Middle_Error_text {
@@ -161,7 +161,7 @@ input {
 .wrap__Container_Bottom {
     display: flex;
     flex-direction: column;
-    margin-top: 24px; /*вместо gap*/
+    margin-top: 28px; /*вместо gap*/
 }
 .wrap__Container_Bottom_Link {
     text-decoration: none;
@@ -216,3 +216,4 @@ button:active {
     color: #466EFA;
     margin-left: 8px;
 }
+

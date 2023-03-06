@@ -42,10 +42,6 @@ function OwnDataForm() {
                     <button className="wrap__Container_Bottom_Btn">
                         Продолжить
                     </button>
-                    <div className="wrap__Container_Bottom_Text">
-                        <p className="wrap__Container_Bottom_Text_Left">Уже есть аккаунт?</p>
-
-                    </div>
                 </div>
             </div>
         </div>

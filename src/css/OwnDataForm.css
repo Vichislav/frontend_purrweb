@@ -47,7 +47,7 @@
     flex-direction: column;
     align-items: center;
     /*padding: 80px 72px 60px;*/
-    gap: 48px;
+   /* gap: 48px;*/
 
     /*position: absolute;*/
     width: 424px;
@@ -74,9 +74,11 @@
     color: #0B1332;
 }
 .wrap__own_Container_Middle {
+    margin-top: 48px; /*вместо gap*/
     width: 280px;
     height: 260px;
 }
 .wrap__own_Container_Bottom {
-
+    margin-top: 36px;
 }
+

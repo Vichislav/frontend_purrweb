@@ -40,8 +40,6 @@ function AuthorForm() {
     }
     /*Email is correct*/
     const ValidEmail = () => {
-        console.log("ValidEmail PREwork")
-        console.log("dirtyCount" + dirtyCount)
         if (dirtyCount) {
             console.log("ValidEmail work")
             document.getElementById('input_email').classList.remove('red_border'); /*убираем красную рамку*/
@@ -58,8 +56,6 @@ function AuthorForm() {
 
     /*Password is correct*/
     const ValidPassword = () => {
-        console.log("ValidPassword PREwork")
-        console.log("dirtyCount" + dirtyCount)
         if (dirtyCount) {
             console.log("ValidPassword work")
             document.getElementById('input_pas').classList.remove('red_border'); /*убираем красную рамку*/
