@@ -88,3 +88,11 @@
     color: #0B1332;
     margin: 8px 0 0 0;
 }
+/*зеденая галочка для инпута пароля*/
+.wrap__Container_Middle_markPassword {
+    position: relative;
+    z-index: 2;
+    width: 16px;
+    height: auto;
+    left: 7px;
+}
