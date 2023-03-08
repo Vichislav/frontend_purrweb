@@ -81,4 +81,11 @@
 .wrap__own_Container_Bottom {
     margin-top: 36px;
 }
-
+.wrap__Container_Error {
+    font-family: 'GilroyLight'; /**/
+    font-style: normal;
+    font-size: 12px;
+    line-height: 15px;
+    color: #F46666;
+    margin-top: 4px;
+}

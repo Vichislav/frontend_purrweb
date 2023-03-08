@@ -25,6 +25,7 @@ function RegistrationForm() {
         defaultValues: { /* должно быть что бы  dirtyFields работало*/
             email: '',
             password: '',
+            password_again: '',
         }
     });
 
