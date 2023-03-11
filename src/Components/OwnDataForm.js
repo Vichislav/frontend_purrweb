@@ -199,7 +199,7 @@ function OwnDataForm() {
                         Имя
                         <input id={'inputName'} {...register('name',
                             {required: "Error!",
-                                pattern: /^[a-zA-Z][a-zA-Z0-9-]*$/i,
+                                pattern: /^[а-яА-ЯёЁa-zA-Z]*$/i,
                             }
                         )}
                             type="text" className="wrap__Container_Middle_Input"
@@ -230,7 +230,7 @@ function OwnDataForm() {
                         Фамилия
                         <input id={'inputSecondName'} {...register('secondName',
                             {required: "Error!",
-                                pattern: /^[a-zA-Z][a-zA-Z0-9-]*$/i,
+                                pattern: /^[а-яА-ЯёЁa-zA-Z]*$/i,
                             }
                         )}
                             type="text" className="wrap__Container_Middle_Password_Input"
@@ -282,9 +282,11 @@ function OwnDataForm() {
                     </label>
                 </div>
                 <div className="wrap__own_Container_Bottom">
-                    <button className="wrap__Container_Bottom_Btn">
-                        Продолжить
-                    </button>
+                    <Link to="/Profile" className="wrap__Container_Bottom_Link" >
+                        <button type="submit"  className="wrap__Container_Bottom_Btn" disabled={!isValid}>
+                            Продолжить
+                        </button>
+                    </Link>
                     {isValid && onValid()}
                     {!isValid && notValid()}
                 </div>

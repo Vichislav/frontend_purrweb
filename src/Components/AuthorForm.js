@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import cross from '../Assets/cross.svg';
 import eye from "../Assets/eye.svg";
 import eye_open from "../Assets/eye_open.svg";
+import Header from "./Header";
 
 
 function AuthorForm() {
