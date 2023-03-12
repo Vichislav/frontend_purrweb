@@ -1,12 +1,13 @@
 import purrweb_logo from "../Assets/purrweb_logo.svg";
 import '../css/Profile.css'
 import out from "../Assets/out.svg";
+import pencil from "../Assets/pencil.svg";
 import {Link} from "react-router-dom";
 
 
 function Profile() {
     return (
-        <div >
+        <div>
             <div className="wrap__Header">
                 <div className="wrap__Header_Logo">
                     <img
@@ -28,6 +29,42 @@ function Profile() {
                             alt="logo not found"
                         />
                     </Link>
+                </div>
+            </div>
+            <div className="wrap__Title">
+                <div className="wrap__Title_text">
+                    Мой профиль
+                </div>
+                <div className="wrap__Title_img">
+                    <img
+                        src={pencil}
+                        alt="logo not found"
+                    />
+                </div>
+                <div className="wrap__Title_btn">
+                    Редактировать
+                </div>
+            </div>
+            <div className="wrap__Data">
+                <div className="wrap__Data_left">
+                    <div className="wrap__Data_name">
+                       <div className="wrap__Data_title">Имя</div>
+                        <div className="wrap__Data_text">Анстасия</div>
+                    </div>
+                    <div className="wrap__Data_secondName">
+                        <div className="wrap__Data_title">Фамилия</div>
+                        <div className="wrap__Data_text">Филатова</div>
+                    </div>
+                </div>
+                <div className="wrap__Data_right">
+                    <div className="wrap__Data_name">
+                        <div className="wrap__Data_title">Телефон</div>
+                        <div className="wrap__Data_text">+7 908 555 35 35</div>
+                    </div>
+                    <div className="wrap__Data_secondName">
+                        <div className="wrap__Data_title">Электронная почта</div>
+                        <div className="wrap__Data_text">nastie203@mail.ru</div>
+                    </div>
                 </div>
             </div>
         </div>
