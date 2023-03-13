@@ -2,6 +2,7 @@ import purrweb_logo from "../Assets/purrweb_logo.svg";
 import '../css/Profile.css'
 import out from "../Assets/out.svg";
 import pencil from "../Assets/pencil.svg";
+import illustration from "../Assets/illustration.svg";
 import {Link} from "react-router-dom";
 
 
@@ -65,6 +66,29 @@ function Profile() {
                         <div className="wrap__Data_title">Электронная почта</div>
                         <div className="wrap__Data_text">nastie203@mail.ru</div>
                     </div>
+                </div>
+            </div>
+            <div className="wrap__Banner">
+                <div className="wrap__Banner_item">
+                    <div className="wrap__Banner_left">
+                        <div className="wrap__Banner_title">Ваша продуктивность выросла!</div>
+                        <div className="wrap__Banner_text">За прошлую неделю Вы выполнили 12 задач</div>
+                        <div className="wrap__Banner_btn">Продолжить</div>
+                    </div>
+                    <div className="wrap__Banner_right">
+                        <div className="wrap__Banner_illustration">
+                            <img
+                                className="wrap__Banner_illustration_img"
+                                src={illustration}
+                                alt="logo not found"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="wrap__Accordion">
+                <div className="wrap__Accordion_title">
+                    Часто задаваемые вопросы
                 </div>
             </div>
         </div>

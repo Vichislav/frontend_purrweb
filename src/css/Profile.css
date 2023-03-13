@@ -101,7 +101,9 @@
     color: #466EFA;
     cursor: pointer;
 }
-/*****/
+
+/**Data**/
+
 .wrap__Data {
     display: flex;
     flex-direction: row;
@@ -141,4 +143,86 @@
     flex-direction: row;
     align-items: center;
     margin-left: 60px;
+}
+
+/**Banner**/
+
+.wrap__Banner {
+    margin: 72px 0px 0px 120px ; /*120 слева*/
+}
+
+.wrap__Banner_item {
+    width: 1200px;
+    height: 234px;
+
+    background: #F6F8FF;
+    border-radius: 32px;
+    display: flex;
+    flex-direction: row;
+}
+
+.wrap__Banner_left {
+    padding: 42px 0px 0px 40px ; /*40 слева*/
+}
+
+.wrap__Banner_title {
+    font-family: 'GilroyLight';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 32px;
+    color: #0B1332;
+}
+
+.wrap__Banner_text {
+    padding-top: 12px;
+    font-family: 'GilroyLight';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #0B1332;
+}
+
+.wrap__Banner_btn {
+    margin-top: 36px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 280px;
+    height: 48px;
+    background: #466EFA;
+    border-radius: 12px;
+
+    font-family: 'GilroyLight';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    color: #FFFFFF;
+}
+.wrap__Banner_right {
+    margin-left: 345px;
+}
+
+.wrap__Banner_illustration {
+
+}
+.wrap__Banner_illustration_img {
+    /*250*250*/
+}
+
+/**Accordion**/
+
+.wrap__Accordion {
+    margin: 70px 0px 0px 120px ; /*120 слева*/
+}
+.wrap__Accordion_title {
+    font-family: 'GilroyLight';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 32px;
+    color: #0B1332;
 }
