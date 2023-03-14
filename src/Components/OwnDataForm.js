@@ -195,7 +195,7 @@ function OwnDataForm() {
             <div className="wrap__own_Container">
                 <p className="wrap__own_Container_Head">Заполните данные о себе</p>
                 <div className="wrap__own_Container_Middle">
-                    <label className="wrap__Container_Middle_Label">
+                    <label className="wrap__own_Container_Middle_Label">
                         Имя
                         <input id={'inputName'} {...register('name',
                             {required: "Error!",
@@ -226,7 +226,7 @@ function OwnDataForm() {
                         {errors?.name && showNameCross()}
                         {!errors?.name && ValidName()}
                     </label>
-                    <label className="wrap__Container_Middle_Label_Password">
+                    <label className="wrap__own_Container_Middle_Label_Password">
                         Фамилия
                         <input id={'inputSecondName'} {...register('secondName',
                             {required: "Error!",
@@ -253,7 +253,7 @@ function OwnDataForm() {
                         {errors?.secondName && showSecondNameCross()}
                         {!errors?.secondName && ValidSecondName()}
                     </label>
-                    <label className="wrap__Container_Middle_Label_Password">
+                    <label className="wrap__own_Container_Middle_Label_Password">
                         Телефон
                         <input id={'inputPhone'} {...register('phone',
                             {required: "Error!",

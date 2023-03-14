@@ -226,3 +226,157 @@
     line-height: 32px;
     color: #0B1332;
 }
+
+/* The accordion functionality */
+:root {
+    --transitionLength: 0.4s;
+    --transitionTiming: ease;
+}
+
+.accordion-animation-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    transition: grid-template-rows var(--transitionLength) var(--transitionTiming);
+}
+
+.accordion-trigger-input:checked ~ .accordion-animation-wrapper {
+    grid-template-rows: 1fr;
+}
+
+.accordion-animation {
+    min-height: 0;
+}
+
+.accordion-transform-wrapper {
+    transform: translateY(-100%);
+    visibility: hidden;
+    transition: transform var(--transitionLength) var(--transitionTiming), visibility 0s var(--transitionLength) var(--transitionTiming);
+}
+
+.accordion-trigger-input:checked ~ .accordion-animation-wrapper .accordion-transform-wrapper {
+    transform: translateY(0);
+    visibility: visible;
+    transition: transform var(--transitionLength) var(--transitionTiming), visibility 0s linear;
+}
+
+/* Margins inside the container will throw animation height calculations off, better use paddings */
+.accordion-content * {
+    margin: 0;
+    padding-left: 10px;
+}
+
+
+/* The styles */
+
+/*body {
+    margin: 0;
+    padding: 16px 0;
+    background: #e3e5e7;
+    font-family: sans-serif;
+    color: #333;
+}*/
+
+.accordion {
+    min-width: 320px;
+    width: 1200px;
+    margin-left: 0px;
+    background: white;
+}
+
+.accordion-item {
+   /* border-top: 2px solid #676767;
+    border-bottom: 2px solid #676767;*/
+
+    /*height: 72px;*/
+    background: #FFFFFF;
+    box-shadow: 0px 12px 26px rgba(232, 233, 236, 0.57);
+    border-radius: 16px;
+    margin-top: 20px;
+    margin-bottom: -2px;
+    overflow: hidden;
+}
+
+.accordion-trigger-input {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+
+.accordion-trigger {
+    display: block;
+    position: relative;
+    padding: 26px;
+    transition: box-shadow var(--transitionLength) var(--transitionTiming);
+    z-index: 1;
+    cursor: pointer;
+
+    font-family: 'GilroyLight';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #0B1332;
+}
+
+
+.accordion-trigger-input:focus-visible ~ .accordion-trigger {
+    outline: 2px solid;
+    outline-offset: -2px;
+}
+
+.accordion-trigger::after {
+    display: block;
+    position: absolute;
+    right: 24px;
+    top: 32px;
+    content: '';
+    width: 8px;
+    height: 8px;
+    border: 2px solid #676767;
+    border-bottom: transparent;
+    border-left: transparent;
+    transform: rotate(135deg);
+    transition: transform var(--transitionLength) var(--transitionTiming);
+}
+
+.accordion-trigger-input:checked ~ .accordion-trigger::after {
+    transform: rotate(135deg) rotateX(180deg) rotateY(180deg) translateY(4px) translateX(-4px);
+}
+
+.accordion-trigger-input:checked ~ .accordion-trigger {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    transition: box-shadow calc(var(--transitionLength) / 4) var(--transitionTiming);
+}
+
+.accordion-content {
+    padding: 16px;
+    background: white;
+    font-family: 'GilroyLight';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #0B1332;
+}
+
+.accordion-content h2 {
+    padding-bottom: 0.75em;
+}
+
+.accordion-content p {
+    padding-bottom: 1.5em;
+}
+
+.accordion-content p:last-of-type {
+    padding-bottom: 0;
+}
+
+.accordion-content img {
+    max-width: 100%;
+}

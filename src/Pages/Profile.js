@@ -90,6 +90,68 @@ function Profile() {
                 <div className="wrap__Accordion_title">
                     Часто задаваемые вопросы
                 </div>
+                <div className="accordion">
+                    <div className="accordion-item">
+                        <input id="accordion-trigger-1" className="accordion-trigger-input" type="checkbox"></input>
+                        <label className="accordion-trigger" htmlFor="accordion-trigger-1">Подписываете ли Вы соглашение о неразглошении?
+                        </label>
+                        <section className="accordion-animation-wrapper">
+                            <div className="accordion-animation">
+                                <div className="accordion-transform-wrapper">
+                                    <div className="accordion-content">
+                                        <p>Подписываю все, чего требует производственная необходимость.
+                                            Исключения составляют только кредиты и прочие сомнительные бумаги.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <div className="accordion-item">
+                        <input id="accordion-trigger-2" className="accordion-trigger-input" type="checkbox"></input>
+                        <label className="accordion-trigger" htmlFor="accordion-trigger-2">Сколько займет создание MVP?
+                        </label>
+                        <section className="accordion-animation-wrapper">
+                            <div className="accordion-animation">
+                                <div className="accordion-transform-wrapper">
+                                    <div className="accordion-content">
+                                        <p>Чтобы создать надежный продукт, вам необходимо создать его прототип, спроектировать,
+                                            разработать и протестировать. На прохождение всех этих этапов у вас уйдет около
+                                            3 месяцев.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div className="accordion-item">
+                        <input id="accordion-trigger-3" className="accordion-trigger-input" type="checkbox"></input>
+                        <label className="accordion-trigger" htmlFor="accordion-trigger-3">Представляете ли Вы маркетинговые услуги?
+                        </label>
+                        <section className="accordion-animation-wrapper">
+                            <div className="accordion-animation">
+                                <div className="accordion-transform-wrapper">
+                                    <div className="accordion-content">
+                                        <p>Маркетинговые услуги для меня тайна. Но креатив я люблю.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div className="accordion-item">
+                        <input id="accordion-trigger-4" className="accordion-trigger-input" type="checkbox"></input>
+                        <label className="accordion-trigger" htmlFor="accordion-trigger-4">Различается ли MVP от прототипов?
+                        </label>
+                        <section className="accordion-animation-wrapper">
+                            <div className="accordion-animation">
+                                <div className="accordion-transform-wrapper">
+                                    <div className="accordion-content">
+                                        <p>Если погуглить пол часика, у всего можно найти отличия</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
             </div>
         </div>
     );
