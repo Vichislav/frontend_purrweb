@@ -4,9 +4,15 @@ import out from "../Assets/out.svg";
 import pencil from "../Assets/pencil.svg";
 import illustration from "../Assets/illustration.svg";
 import {Link} from "react-router-dom";
+import {useSelector} from "react-redux";
+
 
 
 function Profile() {
+
+    const usersEmail = useSelector(state => state.userReducer.users.email)
+
+
     return (
         <div>
             <div className="wrap__Header">
@@ -64,7 +70,7 @@ function Profile() {
                     </div>
                     <div className="wrap__Data_secondName">
                         <div className="wrap__Data_title">Электронная почта</div>
-                        <div className="wrap__Data_text">nastie203@mail.ru</div>
+                        <div className="wrap__Data_text">{usersEmail}</div>
                     </div>
                 </div>
             </div>

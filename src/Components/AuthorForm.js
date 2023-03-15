@@ -5,10 +5,15 @@ import { useForm } from "react-hook-form";
 import cross from '../Assets/cross.svg';
 import eye from "../Assets/eye.svg";
 import eye_open from "../Assets/eye_open.svg";
-import Header from "./Header";
+import {useDispatch} from "react-redux";
+import {updateEmail} from "../store/userSlice";
 
 
 function AuthorForm() {
+
+    const dispatch = useDispatch();
+
+    /*const newEmail = () => dispatch(updateEmail())*/
 
     const {
         register, /*позволяет регистрировать поля для формы*/
@@ -30,7 +35,6 @@ function AuthorForm() {
 
     const onDirty = () => { /*вызывается если isDirty: true*/
         dirtyCount = true;
-        console.log("onDirty WORK???? dirtyCount = " + dirtyCount)
     }
 
     /*Error in Email*/
@@ -42,7 +46,6 @@ function AuthorForm() {
     /*Email is correct*/
     const ValidEmail = () => {
         if (dirtyCount) {
-            console.log("ValidEmail work")
             document.getElementById('input_email').classList.remove('red_border'); /*убираем красную рамку*/
             document.getElementById('crossEmail').classList.add('cross_Block');/*убираем крестик*/
         }
@@ -58,7 +61,6 @@ function AuthorForm() {
     /*Password is correct*/
     const ValidPassword = () => {
         if (dirtyCount) {
-            console.log("ValidPassword work")
             document.getElementById('input_pas').classList.remove('red_border'); /*убираем красную рамку*/
             document.getElementById('crossPassword').classList.add('cross_Block'); /*убираем крестик*/
         }
@@ -92,7 +94,6 @@ function AuthorForm() {
     }
 
     const onValid = () => {
-        console.log("onValid WORK")
         if (dirtyCount) {
             document.querySelector('.wrap__Container_Bottom_Btn').style.backgroundColor = "#466EFA"
             document.getElementById('errorText').classList.add('hiddenDiv');
@@ -103,20 +104,20 @@ function AuthorForm() {
         let elem = document.querySelector('.wrap__Container_Bottom_Btn');
         if (!elem == null) { /*он не успевает его найти он еще не отрисовался... поэтому и проверяем*/
            elem.style.backgroundColor = "#E5EBFF";
-            console.log("notValid WORK")
         }
 
     }
 
     const onSubmit = (data) => {
         alert(JSON.stringify(data))
+        dispatch(updateEmail(JSON.stringify(data)))
+        console.log('data.email ' + JSON.stringify(data))
         reset();
-        document.getElementById('eye').classList.add('cross_Block');
     }
 
     return (
         <div className="wrap">
-          <form onSubmit={handleSubmit(onSubmit)} className="wrap__Container">
+          <form onSubmit={handleSubmit(onSubmit)} className="wrap__Container" id="formName">
               <p className="wrap__Container_Head">Авторизация</p>
               <div className="wrap__Container_Middle">
                   <label className="wrap__Container_Middle_Label">
@@ -179,7 +180,7 @@ function AuthorForm() {
               </div>
               <div className="wrap__Container_Bottom">
                   <Link to="/OwnData" className="wrap__Container_Bottom_Link" >
-                      <button type="submit"  className="wrap__Container_Bottom_Btn" disabled={!isValid}>
+                      <button type="submit" onMouseOver={handleSubmit(onSubmit)}  className="wrap__Container_Bottom_Btn" disabled={!isValid} form='formName'>
                           Продолжить
                       </button>
                   </Link>
@@ -188,9 +189,9 @@ function AuthorForm() {
                       <Link to="/registration" className="wrap__Container_Bottom_Text_Right">Зарегестрироваться</Link>
                   </div>
               </div>
+              {isValid && onValid()}
+              {!isValid && notValid()}
           </form>
-            {isValid && onValid()}
-            {!isValid && notValid()}
         </div>
     );
 }
