@@ -7,10 +7,16 @@ import { Link } from 'react-router-dom'
 import {useForm} from "react-hook-form";
 import cross from "../Assets/cross.svg";
 import mark from "../Assets/green_mark.svg";
+import {updateName} from "../store/nameSlice";
+import {updateSecondName} from "../store/secondNameSlice";
+import {updatePhone} from "../store/phoneSlice";
+import {useDispatch} from "react-redux";
 
 
 
 function OwnDataForm() {
+
+    const dispatch = useDispatch();
 
     const {
         register, getValues,/*позволяет регистрировать поля для формы*/
@@ -58,7 +64,7 @@ function OwnDataForm() {
     }
 
     const showNameCross = () => {
-        console.log('showNameCross')
+
         /*убираем галочку, чистим от зеленого, если оно есть*/
         if (document.getElementById('markName')) {
             document.getElementById('markName').classList.add('cross_Block');
@@ -74,7 +80,7 @@ function OwnDataForm() {
         }
     }
     const ValidName = () => {
-        console.log('ValidName')
+
         /*чистим от красного, если оно есть*/
         if(document.getElementById('crossName')) {
             document.getElementById('crossName').classList.add('cross_Block');
@@ -176,12 +182,15 @@ function OwnDataForm() {
 
     }
     const onSubmit = (data) => {
-        alert(JSON.stringify(data))
-        reset();
+        /*alert(JSON.stringify(data))*/
+        dispatch(updateName(data.name))
+        dispatch(updateSecondName(data.secondName))
+        dispatch(updatePhone(data.phone))
+        /*reset();*/
     }
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="wrap__own">
+        <form onSubmit={handleSubmit(onSubmit)} className="wrap__own" id="formName">
             <Link to="/" className="wrap__own_backBtn">
                 <div className="wrap__own_vector">
                     <img
@@ -283,7 +292,7 @@ function OwnDataForm() {
                 </div>
                 <div className="wrap__own_Container_Bottom">
                     <Link to="/Profile" className="wrap__Container_Bottom_Link" >
-                        <button type="submit"  className="wrap__Container_Bottom_Btn" disabled={!isValid}>
+                        <button type="submit" onMouseDown={handleSubmit(onSubmit)}  className="wrap__Container_Bottom_Btn" disabled={!isValid} form='formName'>
                             Продолжить
                         </button>
                     </Link>

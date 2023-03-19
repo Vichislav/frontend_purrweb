@@ -109,10 +109,10 @@ function AuthorForm() {
     }
 
     const onSubmit = (data) => {
-        alert(JSON.stringify(data))
-        dispatch(updateEmail(JSON.stringify(data)))
-        console.log('data.email ' + JSON.stringify(data))
-        reset();
+        console.log('data.email ' + data.email)
+        /*alert(JSON.stringify(data))*/
+        dispatch(updateEmail(data.email))
+        /*reset();*/
     }
 
     return (
@@ -180,7 +180,7 @@ function AuthorForm() {
               </div>
               <div className="wrap__Container_Bottom">
                   <Link to="/OwnData" className="wrap__Container_Bottom_Link" >
-                      <button type="submit" onMouseOver={handleSubmit(onSubmit)}  className="wrap__Container_Bottom_Btn" disabled={!isValid} form='formName'>
+                      <button type="submit" onMouseDown={handleSubmit(onSubmit)}  className="wrap__Container_Bottom_Btn" disabled={!isValid} form='formName'>
                           Продолжить
                       </button>
                   </Link>

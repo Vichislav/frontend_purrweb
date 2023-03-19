@@ -8,9 +8,8 @@ const userSlice = createSlice({
         }
     },
     reducers: {
-        updateName (state, action) {},
         updateEmail (state, action) {
-            state.users.email = action.data.email
+            state.users.email = action.payload
         },
     }
 })

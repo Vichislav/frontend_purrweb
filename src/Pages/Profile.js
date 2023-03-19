@@ -11,6 +11,9 @@ import {useSelector} from "react-redux";
 function Profile() {
 
     const usersEmail = useSelector(state => state.userReducer.users.email)
+    const userName = useSelector(state => state.nameReducer.userName)
+    const userSecondName = useSelector(state => state.secondNameReducer.userSecondName)
+    const userPhone = useSelector(state => state.phoneReducer.userPhone)
 
 
     return (
@@ -25,7 +28,7 @@ function Profile() {
                     <p className="wrap__Header_Text">Purrweb</p>
                 </div>
                 <div className='wrap__Header_data'>
-                    <div className="wrap__Header_data_name">Анастасия Филатова</div>
+                    <div className="wrap__Header_data_name">{userName} {userSecondName}</div>
                     <Link to="/" className="wrap__Header_link">
                         <div className='wrap__Header_out_text'>Выйти</div>
                     </Link>
@@ -56,17 +59,17 @@ function Profile() {
                 <div className="wrap__Data_left">
                     <div className="wrap__Data_name">
                        <div className="wrap__Data_title">Имя</div>
-                        <div className="wrap__Data_text">Анстасия</div>
+                        <div className="wrap__Data_text">{userName}</div>
                     </div>
                     <div className="wrap__Data_secondName">
                         <div className="wrap__Data_title">Фамилия</div>
-                        <div className="wrap__Data_text">Филатова</div>
+                        <div className="wrap__Data_text">{userSecondName}</div>
                     </div>
                 </div>
                 <div className="wrap__Data_right">
                     <div className="wrap__Data_name">
                         <div className="wrap__Data_title">Телефон</div>
-                        <div className="wrap__Data_text">+7 908 555 35 35</div>
+                        <div className="wrap__Data_text">{userPhone}</div>
                     </div>
                     <div className="wrap__Data_secondName">
                         <div className="wrap__Data_title">Электронная почта</div>
