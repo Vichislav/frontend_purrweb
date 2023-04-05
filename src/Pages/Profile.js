@@ -4,16 +4,26 @@ import out from "../Assets/out.svg";
 import pencil from "../Assets/pencil.svg";
 import illustration from "../Assets/illustration.svg";
 import {Link} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {updateNameAsync, showUserName} from "../store/nameSlice";
+
 
 
 
 function Profile() {
 
+    const dispatch = useDispatch();
+
     const usersEmail = useSelector(state => state.userReducer.users.email)
-    const userName = useSelector(state => state.nameReducer.userName)
+    const userName = useSelector(showUserName)
     const userSecondName = useSelector(state => state.secondNameReducer.userSecondName)
     const userPhone = useSelector(state => state.phoneReducer.userPhone)
+
+    const onFetchClicked = (data) => {
+        console.log('onFetchClicked work')
+        dispatch(updateNameAsync(data))
+        console.log(userName)
+    };
 
 
     return (
@@ -82,7 +92,7 @@ function Profile() {
                     <div className="wrap__Banner_left">
                         <div className="wrap__Banner_title">Ваша продуктивность выросла!</div>
                         <div className="wrap__Banner_text">За прошлую неделю Вы выполнили 12 задач</div>
-                        <div className="wrap__Banner_btn">Продолжить</div>
+                        <div className="wrap__Banner_btn" onClick={onFetchClicked(10)}>Продолжить</div>
                     </div>
                     <div className="wrap__Banner_right">
                         <div className="wrap__Banner_illustration">
