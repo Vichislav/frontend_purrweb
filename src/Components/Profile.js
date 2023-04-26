@@ -6,6 +6,7 @@ import illustration from "../Assets/illustration.svg";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {updateNameAsync, showUserName} from "../store/nameSlice";
+import {useEffect, useState} from "react";
 
 
 
@@ -14,17 +15,25 @@ function Profile() {
 
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        console.log("useEffect work")
+        dispatch(updateNameAsync(10))
+        console.log(userName)
+    }, [])
+
     const usersEmail = useSelector(state => state.userReducer.users.email)
     const userName = useSelector(showUserName)
     const userSecondName = useSelector(state => state.secondNameReducer.userSecondName)
     const userPhone = useSelector(state => state.phoneReducer.userPhone)
 
-    const onFetchClicked = (data) => {
-        console.log('onFetchClicked work')
-        dispatch(updateNameAsync(data))
-        console.log(userName)
-    };
+    /*const [name, setName] = useState('defaultName')*/
 
+    /*const showName = () => {
+        setName(userName);
+        console.log("showName userName = " + userName)
+        console.log("showName name = " + name)
+    }
+    setTimeout(showName, 1000)*/
 
     return (
         <div>
@@ -69,7 +78,7 @@ function Profile() {
                 <div className="wrap__Data_left">
                     <div className="wrap__Data_name">
                        <div className="wrap__Data_title">Имя</div>
-                        <div className="wrap__Data_text">{userName}</div>
+                         <div className="wrap__Data_text">{userName}</div>
                     </div>
                     <div className="wrap__Data_secondName">
                         <div className="wrap__Data_title">Фамилия</div>
@@ -92,7 +101,7 @@ function Profile() {
                     <div className="wrap__Banner_left">
                         <div className="wrap__Banner_title">Ваша продуктивность выросла!</div>
                         <div className="wrap__Banner_text">За прошлую неделю Вы выполнили 12 задач</div>
-                        <div className="wrap__Banner_btn" onClick={onFetchClicked(10)}>Продолжить</div>
+                        <div className="wrap__Banner_btn">Продолжить</div>
                     </div>
                     <div className="wrap__Banner_right">
                         <div className="wrap__Banner_illustration">
