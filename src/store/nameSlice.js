@@ -11,6 +11,8 @@ const nameSlice = createSlice({
     },
     reducers: {
         updateName (state, action) {
+            console.log("updateName work");
+            console.log("action.payload =" + action.payload);
             state.userName = action.payload
         },
     }
@@ -18,11 +20,13 @@ const nameSlice = createSlice({
 
 export const updateNameAsync = (data) => async (dispatch) => {
 
-        const response = await axios.get(`${GET_URL}/${data}`)
-        /*const response = axios.get(`${GET_URL}/${data}`)*/
+        await axios.get(`${GET_URL}/${data}`)
             .then(function (response) {
                 // обработка успешного запроса
                 console.log(response);
+                const res = response.data.name;
+                console.log(res);
+                dispatch(updateName(res));
             })
             .catch(function (error) {
                 // обработка ошибки
@@ -31,11 +35,12 @@ export const updateNameAsync = (data) => async (dispatch) => {
             .finally(function () {
                 console.log('ну привет курортнички');
             });
-        dispatch(updateName(response));
+
 
 }
 
 
 export const {updateName} = nameSlice.actions;
-export const showUserName = (state) => state.userName
+export const showUserName = (state) => state.userName; console.log("state.userName")
+
 export default nameSlice.reducer;

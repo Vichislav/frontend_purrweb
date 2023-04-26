@@ -36,7 +36,7 @@ function Profile() {
     setTimeout(showName, 1000)*/
 
     return (
-        <div>
+        <div className="wrap__Profile">
             <div className="wrap__Header">
                 <div className="wrap__Header_Logo">
                     <img

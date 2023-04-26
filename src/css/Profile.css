@@ -1,5 +1,21 @@
-.wrap__Header {
+
+:root {
+
+}
+
+.wrap__Profile {
     width: 1400px;
+}
+@media only screen and (max-width: 1320px) {
+    /*при 1321 будет 1400 при 1319 будет уже 100%*/
+    .wrap__Profile {
+        width: 100vw;
+    }
+}
+
+.wrap__Header {
+    max-width: 1400px;
+    width: 100%;
     background-color: white;
     border-bottom: 1px solid #EFEFEF;
     display: flex;
@@ -12,11 +28,17 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 20px 120px;
+    padding: 20px 120px 20px 8.57%;
     gap: 16px;
     width: 40%;
-
 }
+
+@media only screen and (max-width: 900px) {
+    .wrap__Header_Logo {
+        padding: 20px 120px 20px 22.4px;
+    }
+}
+
 .wrapHeaderLogoImg {
     width: 22px;
     height: 22px;
@@ -35,8 +57,14 @@
     flex-direction: row;
     justify-content: right;
     align-items: center;
-    padding:  20px 128px 20px 0px;
+    padding:  20px 9.14% 20px 0px;
     width: 40%;
+}
+
+@media only screen and (max-width: 900px) {
+    .wrap__Header_data {
+        padding: 20px 40px 20px 0px;
+    }
 }
 
 .wrap__Header_out_text {
@@ -77,6 +105,12 @@
     padding: 48px 0px 0px 120px ;
 }
 
+@media only screen and (max-width: 1320px) {
+    .wrap__Title {
+        padding: 48px 0px 0px 32px
+    }
+}
+
 .wrap__Title_text {
     font-family: 'GilroyLight';
     font-style: normal;
@@ -110,6 +144,13 @@
     align-items: center;
     padding: 36px 0px 0px 120px ; /*120 слева*/
 }
+
+@media only screen and (max-width: 1320px) {
+    .wrap__Data {
+        padding: 36px 0px 0px 32px /*32 слева*/
+    }
+}
+
 .wrap__Data_left {
     display: flex;
     flex-direction: row;
@@ -151,8 +192,14 @@
     margin: 72px 0px 0px 120px ; /*120 слева*/
 }
 
+@media only screen and (max-width: 1320px) {
+    .wrap__Banner {
+        margin: 72px 32px 0px 32px /*32 слева*/
+    }
+}
+
 .wrap__Banner_item {
-    width: 1200px;
+    width: 100%;
     height: 234px;
 
     background: #F6F8FF;
@@ -203,7 +250,13 @@
     color: #FFFFFF;
 }
 .wrap__Banner_right {
-    margin-left: 345px;
+    margin-left: 27%;
+}
+
+@media only screen and (max-width: 900px) {
+    .wrap__Banner_right {
+        margin-left: 41px;
+    }
 }
 
 .wrap__Banner_illustration {
@@ -218,6 +271,13 @@
 .wrap__Accordion {
     margin: 70px 0px 0px 120px ; /*120 слева*/
 }
+
+@media only screen and (max-width: 1320px) {
+    .wrap__Accordion {
+        margin: 70px 32px 0px 32px /*32 слева*/
+    }
+}
+
 .wrap__Accordion_title {
     font-family: 'GilroyLight';
     font-style: normal;
@@ -279,7 +339,7 @@
 
 .accordion {
     min-width: 320px;
-    width: 1200px;
+    width: 100%;
     margin-left: 0px;
     background: white;
 }

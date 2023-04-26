@@ -4,7 +4,7 @@ import {Route, Routes} from "react-router-dom";
 import Registration from "./Pages/Registration";
 import Authorization from "./Pages/Аuthorization";
 import OwnData from "./Pages/OwnData";
-import Profile from "./Pages/Profile";
+import ProfilePage from "./Pages/ProfilePage";
 
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
               <Route path="/" element={<Authorization />}/>
               <Route path="/registration" element={<Registration />}/>
               <Route path="/OwnData" element={<OwnData />}/>
-              <Route path="/Profile" element={<Profile />}/>
+              <Route path="/Profile" element={<ProfilePage />}/>
           </Routes>
       </div>
     );
