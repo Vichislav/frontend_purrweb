@@ -22,7 +22,8 @@ function Profile() {
     }, [])
 
     const usersEmail = useSelector(state => state.userReducer.users.email)
-    const userName = useSelector(showUserName)
+    //const userName = useSelector(showUserName)
+    const userName = 'Вячеслав' //заглушка на время адаптивной верстки
     const userSecondName = useSelector(state => state.secondNameReducer.userSecondName)
     const userPhone = useSelector(state => state.phoneReducer.userPhone)
 

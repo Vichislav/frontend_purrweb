@@ -35,10 +35,17 @@
 
 @media only screen and (max-width: 900px) {
     .wrap__Header_Logo {
-        padding: 20px 120px 20px 22.4px;
+        padding: 20px 20px 20px 22.4px;
+        width: 30%;
     }
 }
 
+@media only screen and (max-width: 670px) {
+    .wrap__Header_Logo {
+        padding: 20px 0px 20px 6.4px;
+        width: 10%;
+    }
+}
 .wrapHeaderLogoImg {
     width: 22px;
     height: 22px;
@@ -50,6 +57,11 @@
     font-weight: 500;
     font-size: 22px;
     line-height: 28px;
+}
+@media only screen and (max-width: 670px) {
+    .wrap__Header_Text {
+        display: none;
+    }
 }
 .wrap__Header_data {
     box-sizing: border-box;
@@ -64,6 +76,14 @@
 @media only screen and (max-width: 900px) {
     .wrap__Header_data {
         padding: 20px 40px 20px 0px;
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 670px) {
+    .wrap__Header_data {
+        padding: 20px 24px 20px 0px;
+        width: 90%;
     }
 }
 
@@ -98,6 +118,7 @@
     color: #0B1332;
     margin-right: 20px;
 }
+
 .wrap__Title {
     display: flex;
     flex-direction: row;
@@ -108,6 +129,11 @@
 @media only screen and (max-width: 1320px) {
     .wrap__Title {
         padding: 48px 0px 0px 32px
+    }
+}
+@media only screen and (max-width: 670px) {
+    .wrap__Title {
+        padding: 48px 0px 0px 16px
     }
 }
 
@@ -135,6 +161,11 @@
     color: #466EFA;
     cursor: pointer;
 }
+@media only screen and (max-width: 670px) {
+    .wrap__Title_btn {
+        display: none;
+    }
+}
 
 /**Data**/
 
@@ -148,6 +179,13 @@
 @media only screen and (max-width: 1320px) {
     .wrap__Data {
         padding: 36px 0px 0px 32px /*32 слева*/
+    }
+}
+
+@media only screen and (max-width: 670px) {
+    .wrap__Data {
+        flex-wrap: wrap;
+        padding: 36px 0px 0px 16px /*16 слева*/
     }
 }
 
@@ -185,6 +223,13 @@
     align-items: center;
     margin-left: 60px;
 }
+@media only screen and (max-width: 670px) {
+    .wrap__Data_right {
+        margin-left: 0;
+        margin-top: 24px;
+    }
+}
+
 
 /**Banner**/
 
@@ -197,6 +242,11 @@
         margin: 72px 32px 0px 32px /*32 слева*/
     }
 }
+@media only screen and (max-width: 670px) {
+    .wrap__Banner {
+        margin: 48px 32px 0px 16px /*16 слева*/
+    }
+}
 
 .wrap__Banner_item {
     width: 100%;
@@ -207,11 +257,22 @@
     display: flex;
     flex-direction: row;
 }
+@media only screen and (max-width: 670px) {
+    .wrap__Banner_item {
+        flex-wrap: wrap;
+        height: auto;
+        justify-content: center;
+    }
+}
 
 .wrap__Banner_left {
     padding: 42px 0px 0px 40px ; /*40 слева*/
 }
-
+@media only screen and (max-width: 670px) {
+    .wrap__Banner_left {
+        padding: 0 0 0 0;
+    }
+}
 .wrap__Banner_title {
     font-family: 'GilroyLight';
     font-style: normal;
@@ -249,13 +310,32 @@
     line-height: 20px;
     color: #FFFFFF;
 }
+
+@media only screen and (max-width: 670px) {
+    .wrap__Banner_title {
+        padding-top: 28px;
+        font-size: 18px;
+        line-height: 24px;
+        text-align: center;
+    }
+    .wrap__Banner_text {
+        font-size: 14px;
+        line-height: 20px;
+        text-align: center;
+        margin-bottom: 32px;
+    }
+    .wrap__Banner_btn {
+        margin: auto;
+    }
+}
+
 .wrap__Banner_right {
     margin-left: 27%;
 }
 
 @media only screen and (max-width: 900px) {
     .wrap__Banner_right {
-        margin-left: 41px;
+        margin: 64px 0 0 41px;
     }
 }
 
@@ -275,6 +355,11 @@
 @media only screen and (max-width: 1320px) {
     .wrap__Accordion {
         margin: 70px 32px 0px 32px /*32 слева*/
+    }
+}
+@media only screen and (max-width: 670px) {
+    .wrap__Accordion {
+        margin: 70px 32px 0px 16px /*16 слева*/
     }
 }
 
@@ -384,7 +469,11 @@
     color: #0B1332;
 }
 
-
+@media only screen and (max-width: 670px) {
+    .accordion-trigger {
+        padding: 26px 36px 26px 26px; /*справа 36*/
+    }
+}
 .accordion-trigger-input:focus-visible ~ .accordion-trigger {
     outline: 2px solid;
     outline-offset: -2px;
