@@ -529,3 +529,25 @@
 .accordion-content img {
     max-width: 100%;
 }
+
+.wrap__Black {
+    width: 100%;
+    margin-top: 33px;
+    display: none;
+}
+
+@media only screen and (max-width: 670px) {
+    .wrap__Black {
+        display: block;
+    }
+}
+
+.wrap__Black_item {
+    margin: auto;
+    width: 134px;
+    height: 5px;
+    left: calc(50% - 134px/2 + 0.5px);
+    bottom: 8px;
+    background: #000000;
+    border-radius: 100px;
+}
