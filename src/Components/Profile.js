@@ -37,7 +37,9 @@ function Profile() {
 
     return (
         <div className="wrap__Profile">
+
             <div className="wrap__Out">
+                <div className="wrap__Out_back"></div>
                 <div className="wrap__Out_menu">
                     <div className="wrap__Out_cross">
                         <img
@@ -47,12 +49,17 @@ function Profile() {
                         />
                     </div>
                     <div className="wrap__Out_text">
-                       <p className="wrap__Out_text_item">
-                           Вы уверены что хотите выйти из аккаунта?
-                       </p>
+                        <p className="wrap__Out_text_item">
+                            Вы уверены что хотите выйти из аккаунта?
+                        </p>
                     </div>
                     <div className="wrap__Out_btn">
-
+                        <button type="submit"  className="wrap__Out_cancel">
+                            Отмена
+                        </button>
+                        <button type="submit"  className="wrap__Out_exit">
+                            Выйти
+                        </button>
                     </div>
                 </div>
             </div>
