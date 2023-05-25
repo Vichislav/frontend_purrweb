@@ -7,13 +7,14 @@ const GET_URL = 'http://localhost:8080/api/user'
 const nameSlice = createSlice({
     name: 'nameSlice',
     initialState: {
-        userName: "userName"
+        userName: ''
     },
     reducers: {
         updateName (state, action) {
-            console.log("updateName work");
+            console.log("updateName state = " + state);
             console.log("action.payload =" + action.payload);
             state.userName = action.payload
+            console.log("state.userName =" + state.userName);
         },
     }
 })
@@ -23,9 +24,8 @@ export const updateNameAsync = (data) => async (dispatch) => {
         await axios.get(`${GET_URL}/${data}`)
             .then(function (response) {
                 // обработка успешного запроса
-                console.log(response);
                 const res = response.data.name;
-                console.log(res);
+                console.log("res = " + res);
                 dispatch(updateName(res));
             })
             .catch(function (error) {
@@ -33,7 +33,8 @@ export const updateNameAsync = (data) => async (dispatch) => {
                 console.log(error);
             })
             .finally(function () {
-                console.log('ну привет курортнички');
+
+                console.log('axios finally');
             });
 
 
