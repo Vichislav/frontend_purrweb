@@ -14,6 +14,7 @@
         width: 100vw;
     }
 }
+
 .wrap__Out {
     position: absolute;
     z-index: 2;
@@ -23,7 +24,13 @@
     justify-content: center;
     align-items: center;
     isolation: isolate;
+    visibility: hidden;
 }
+
+.wrap__Out_link {
+  text-decoration: none;
+}
+
 .wrap__Out_back {
     position: relative;
     z-index: 3;
@@ -45,6 +52,8 @@
     background: #FFFFFF;
     border-radius: 24px;
 }
+
+
 .wrap__Out_cross {
     position: relative;
     width: 10.5px;
@@ -125,9 +134,33 @@
     cursor: pointer;
 }
 
-button:active {
-    background-color: #1245fa;
+@media only screen and (max-width: 380px) {
+    .wrap__Out_menu {
+        width: 100vw;
+    }
+    .wrap__Out_cross {
+        visibility: hidden;
+    }
+    .wrap__Out_text {
+        margin-left: 16px;
+        margin-top: 24px;
+    }
+    .wrap__Out_btn {
+        width: 91.5%;
+        height: 48px;
+        margin-left: 16px;
+        margin-top: 36px;
+    }
+    .wrap__Out_cancel {
+        width: 165.5px;
+    }
+    .wrap__Out_exit {
+        width: 165.5px;
+    }
 }
+/*button:active {
+    background-color: #1245fa;
+}*/
 
 /***********************************************************************/
 .wrap__Window {
@@ -356,7 +389,7 @@ button:active {
 /**Banner**/
 
 .wrap__Banner {
-    margin: 72px 0px 0px 120px ; /*120 слева*/
+    margin: 72px 120px 0px 120px ; /*120 слева*/
 }
 
 @media only screen and (max-width: 1320px) {
@@ -471,7 +504,7 @@ button:active {
 /**Accordion**/
 
 .wrap__Accordion {
-    margin: 70px 0px 0px 120px ; /*120 слева*/
+    margin: 70px 120px 0px 120px ; /*120 слева*/
 }
 
 @media only screen and (max-width: 1320px) {

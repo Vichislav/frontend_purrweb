@@ -1,5 +1,6 @@
 import purrweb_logo from "../Assets/purrweb_logo.svg";
 import '../css/Profile.css'
+import '../css/Reset.css'
 import out from "../Assets/out.svg";
 import pencil from "../Assets/pencil.svg";
 import cross_gray from "../Assets/cross_gray.svg";
@@ -26,7 +27,27 @@ function Profile() {
     const userSecondName = useSelector(state => state.secondNameReducer.userSecondName)
     const userPhone = useSelector(state => state.phoneReducer.userPhone)
 
-    /*const [name, setName] = useState('defaultName')*/
+    const showOutMenu = () => {
+
+        let element = document.getElementById('Out_window');
+            if (element !== null) {
+                element.style.visibility = 'visible';
+            }
+            else {
+                console.log('showOutMenu else work')
+            }
+
+    }
+    const HideOutMenu = () => {
+
+        let element = document.getElementById('Out_window');
+        if (element !== null) {
+            element.style.visibility = 'hidden';
+        }
+        else {
+            console.log('HideOutMenu else work')
+        }
+    }
 
     /*const showName = () => {
         setName(userName);
@@ -38,10 +59,10 @@ function Profile() {
     return (
         <div className="wrap__Profile">
 
-            <div className="wrap__Out">
+            <div className="wrap__Out" id={'Out_window'}>
                 <div className="wrap__Out_back"></div>
                 <div className="wrap__Out_menu">
-                    <div className="wrap__Out_cross">
+                    <div className="wrap__Out_cross" onClick={HideOutMenu}>
                         <img
                             className="cross_gray"
                             src={cross_gray}
@@ -54,12 +75,14 @@ function Profile() {
                         </p>
                     </div>
                     <div className="wrap__Out_btn">
-                        <button type="submit"  className="wrap__Out_cancel">
+                        <button type="submit"  className="wrap__Out_cancel" onClick={HideOutMenu}>
                             Отмена
                         </button>
-                        <button type="submit"  className="wrap__Out_exit">
-                            Выйти
-                        </button>
+                        <Link to="/" className="wrap__Out_link">
+                            <button type="submit"  className="wrap__Out_exit">
+                                Выйти
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -75,16 +98,16 @@ function Profile() {
                     </div>
                     <div className='wrap__Header_data'>
                         <div className="wrap__Header_data_name">{userName} {userSecondName}</div>
-                        <Link to="/" className="wrap__Header_link">
+                        <div className="wrap__Header_link" onClick={showOutMenu}>
                             <div className='wrap__Header_out_text'>Выйти</div>
-                        </Link>
-                        <Link to="/">
+                        </div>
+                        <div onClick={showOutMenu}>
                             <img
                                 className="wrap__Header_out_img"
                                 src={out}
                                 alt="logo not found"
                             />
-                        </Link>
+                        </div>
                     </div>
                 </div>
                 <div className="wrap__Title">
