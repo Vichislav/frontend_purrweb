@@ -20,6 +20,17 @@
     border-radius: 24px;;
 }
 
+@media only screen and (max-width: 770px) {
+    .wrap__Container_reg {
+        top: 136px;
+    }
+}
+@media only screen and (max-width: 480px) {
+    .wrap__Container_reg {
+        width: 91.46%;
+        top: 115px;
+    }
+}
 .wrap__Container_Middle_reg {
     margin-top: 48px; /*вместо gap*/
     width: 280px;

@@ -1,24 +1,43 @@
 
-.wrap__Header {
-    width: 1400px;
+.wrap__Component_Header {
+    min-width: 1440px;
     background-color: white;
     border-bottom: 1px solid #EFEFEF;
 }
 
-.wrap__Header_Logo {
+@media only screen and (max-width: 1439px) {
+    /*при 1321 будет 1400 при 1319 будет уже 100%*/
+    .wrap__Component_Header {
+        min-width: 375px;
+        width: 100vw;
+    }
+}
+.wrap__Component_Header_Logo {
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 20px 120px;
+    padding: 20px 120px 20px 7.64%;
     gap: 16px;
 
+}
+
+@media only screen and (max-width: 770px) {
+    .wrap__Component_Header_Logo {
+        padding: 20px 120px 20px 2.86%;
+    }
+}
+
+@media only screen and (max-width: 380px) {
+    .wrap__Component_Header_Logo {
+        padding: 20px 120px 20px 1.71%;
+    }
 }
 .wrapHeaderLogoImg {
     width: 22px;
     height: 22px;
 }
-.wrap__Header_Text {
+.wrap__Component_Header_Text {
     margin: 0 0 0 0;
     font-family: 'GilroyLight';
     font-style: normal;

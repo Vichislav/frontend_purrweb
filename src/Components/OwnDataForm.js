@@ -191,16 +191,18 @@ function OwnDataForm() {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="wrap__own" id="formName">
-            <Link to="/" className="wrap__own_backBtn">
-                <div className="wrap__own_vector">
-                    <img
-                        className="wrap__own_vector_item"
-                        src={vector}
-                        alt="vector not found"
-                    />
-                </div>
-                <div className="wrap__own_text">Назад</div>
-            </Link>
+            <div className='wrap__own_backBtn_box'>
+                <Link to="/" className="wrap__own_backBtn">
+                    <div className="wrap__own_vector">
+                        <img
+                            className="wrap__own_vector_item"
+                            src={vector}
+                            alt="vector not found"
+                        />
+                    </div>
+                    <div className="wrap__own_text">Назад</div>
+                </Link>
+            </div>
             <div className="wrap__own_Container">
                 <p className="wrap__own_Container_Head">Заполните данные о себе</p>
                 <div className="wrap__own_Container_Middle">
