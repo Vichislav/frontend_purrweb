@@ -11,10 +11,7 @@ const nameSlice = createSlice({
     },
     reducers: {
         updateName (state, action) {
-            console.log("updateName state = " + state);
-            console.log("action.payload =" + action.payload);
             state.userName = action.payload
-            console.log("state.userName =" + state.userName);
         },
     }
 })

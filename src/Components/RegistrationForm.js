@@ -8,6 +8,8 @@ import cross from "../Assets/cross.svg";
 import eye from "../Assets/eye.svg";
 import eye_open from "../Assets/eye_open.svg";
 import mark from "../Assets/green_mark.svg";
+import axios from "axios";
+import {addEmail} from "../store/userSlice";
 
 
 function RegistrationForm() {
@@ -34,6 +36,7 @@ function RegistrationForm() {
     let dirtyPasswordCount = false; /*переключатель для оценки изменяемости поля Password*/
     let dirtySecondPasswordCount = false; /*переключатель для оценки изменяемости поля SecondPassword*/
 
+
     const onDirty = () => { /*вызывается если isDirty: true*/
         dirtyCount = true;
     }
@@ -46,6 +49,9 @@ function RegistrationForm() {
     const onSecondDirtyPasswordCount = () => {
         dirtySecondPasswordCount = true;
     }
+
+    const currentEmail = getValues("email");
+    const currentPassword = getValues("password");
 
     const showEmailCross = () => {
         /*убираем галочку, чистим от зеленого, если оно есть*/
@@ -209,6 +215,41 @@ function RegistrationForm() {
         document.getElementById('eye').classList.add('cross_Block');
     }
 
+    const  createNewUser = async () => {
+        console.log('createNewUser work')
+        console.log('currentEmail = ' + currentEmail)
+        console.log('currentPassword = ' + currentPassword)
+
+     /*   let currentUser = {
+            name: 'test',
+            surname: 'test',
+            phone: '8908',
+            email: currentEmail,
+            password: currentPassword,
+        }*/
+
+
+        await axios.post(`${"http://localhost:8080/api/user"}`,
+            {
+            "name": `${currentEmail}`,
+            "surname": "ivanchale de rikotto",
+                "email" : "currentEmail",
+        })
+            .then(function (response) {
+                // обработка успешного запроса
+                console.log(response);
+            })
+            .catch(function (error) {
+                // обработка ошибки
+                console.log(error);
+            })
+            .finally(function () {
+                console.log('axios finally');
+            });
+
+
+    }
+
 
     return (
         <div className="wrap">
@@ -338,7 +379,7 @@ function RegistrationForm() {
                 </div>
                 <div className="wrap__Container_Bottom">
                     <Link to="/OwnData" className="wrap__Container_Bottom_Link" >
-                        <button type="submit"  className="wrap__Container_Bottom_Btn" disabled={!isValid}>
+                        <button type="submit" onMouseDown={handleSubmit(createNewUser)}  className="wrap__Container_Bottom_Btn" disabled={!isValid}>
                             Продолжить
                         </button>
                     </Link>
