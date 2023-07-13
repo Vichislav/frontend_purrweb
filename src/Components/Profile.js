@@ -17,15 +17,16 @@ function Profile() {
 
     const dispatch = useDispatch();
 
-    dispatch(updateNameAsync(10));
+   /* dispatch(updateNameAsync(10));*/
 
-    const usersEmail = useSelector(state => state.userReducer.users.email)
-    const userName = useSelector(state => state.nameReducer.userName)
+
+    const usersProfileEmail = useSelector(state => state.registrationReducer.userEmail);
+    const userProfileName = useSelector(state => state.ownDataReducer.userName)
 
 
     // const userName = 'Вячеслав' //заглушка на время адаптивной верстки
-    const userSecondName = useSelector(state => state.secondNameReducer.userSecondName)
-    const userPhone = useSelector(state => state.phoneReducer.userPhone)
+    const userSecondName = useSelector(state => state.ownDataReducer.userSecondName)
+    const userPhone = useSelector(state => state.ownDataReducer.userPhone)
 
     const showOutMenu = () => {
 
@@ -97,7 +98,7 @@ function Profile() {
                         <p className="wrap__Header_Text">Purrweb</p>
                     </div>
                     <div className='wrap__Header_data'>
-                        <div className="wrap__Header_data_name">{userName} {userSecondName}</div>
+                        <div className="wrap__Header_data_name">{userProfileName} {userSecondName}</div>
                         <div className="wrap__Header_link" onClick={showOutMenu}>
                             <div className='wrap__Header_out_text'>Выйти</div>
                         </div>
@@ -128,7 +129,7 @@ function Profile() {
                     <div className="wrap__Data_left">
                         <div className="wrap__Data_name">
                             <div className="wrap__Data_title">Имя</div>
-                            <div className="wrap__Data_text">{userName}</div>
+                            <div className="wrap__Data_text">{userProfileName}</div>
                         </div>
                         <div className="wrap__Data_secondName">
                             <div className="wrap__Data_title">Фамилия</div>
@@ -142,7 +143,7 @@ function Profile() {
                         </div>
                         <div className="wrap__Data_secondName">
                             <div className="wrap__Data_title">Электронная почта</div>
-                            <div className="wrap__Data_text">{usersEmail}</div>
+                            <div className="wrap__Data_text">{usersProfileEmail}</div>
                         </div>
                     </div>
                 </div>

@@ -3,6 +3,8 @@ import userReducer from './userSlice' /*притащили автоматом с
 import nameReducer from './nameSlice' /*toolkit сам его сформировал =| получается*/
 import secondNameReducer from './secondNameSlice'
 import phoneReducer from './phoneSlice'
+import registrationReducer from './registrationSlice'
+import ownDataReducer from "./ownDataSlice";
 
 export default configureStore({
     reducer: {
@@ -10,5 +12,7 @@ export default configureStore({
         nameReducer: nameReducer, /*сформированный */
         secondNameReducer: secondNameReducer,
         phoneReducer: phoneReducer,
+        registrationReducer: registrationReducer,
+        ownDataReducer: ownDataReducer,
     }
 })

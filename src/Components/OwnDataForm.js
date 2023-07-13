@@ -11,6 +11,7 @@ import {updateName} from "../store/nameSlice";
 import {updateSecondName} from "../store/secondNameSlice";
 import {updatePhone} from "../store/phoneSlice";
 import {useDispatch} from "react-redux";
+import {updateOwnDataName, updateOwnDataSecondName, updateOwnDataPhone} from "../store/ownDataSlice";
 
 
 
@@ -21,7 +22,7 @@ function OwnDataForm() {
     const {
         register, getValues,/*позволяет регистрировать поля для формы*/
         formState: {
-            errors, isValid, isDirty, dirtyFields, isValidating, validate, formValues,
+            errors, isValid, isDirty, dirtyFields, isValidating, validate, formValues
         },
         handleSubmit, /*пропускает метод (onSubmit) только если нет errors*/
         reset, /*метод очистки формы после отправки*/
@@ -34,6 +35,10 @@ function OwnDataForm() {
             phone: '',
         }
     });
+
+    const userName = getValues('name');
+    const userSecondName = getValues('secondName');
+    const userPhone = getValues('phone');
 
     let dirtyCount = false; /*переключатель для оценки изменяемости любого из инпутов*/
     let dirtyNameCount = false; /*переключатель для оценки изменяемости поля email*/
@@ -183,9 +188,9 @@ function OwnDataForm() {
     }
     const onSubmit = (data) => {
         /*alert(JSON.stringify(data))*/
-        dispatch(updateName(data.name))
-        dispatch(updateSecondName(data.secondName))
-        dispatch(updatePhone(data.phone))
+        dispatch(updateOwnDataName(`${userName}`))
+        dispatch(updateOwnDataSecondName(`${userSecondName}`))
+        dispatch(updateOwnDataPhone(`${userPhone}`))
         /*reset();*/
     }
 

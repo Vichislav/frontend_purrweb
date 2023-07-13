@@ -1,6 +1,8 @@
 /*import '../css/Reset.css'*/
 import '../css/RegistrationForm.css'
 import '../css/AuthorForm.css'
+import {useDispatch} from "react-redux";
+import {updateRegistrationEmail, updateRegistrationPassword} from "../store/registrationSlice";
 
 import { Link } from 'react-router-dom'
 import {useForm} from "react-hook-form";
@@ -50,9 +52,6 @@ function RegistrationForm() {
         dirtySecondPasswordCount = true;
     }
 
-    const currentEmail = getValues("email");
-    const currentPassword = getValues("password");
-
     const showEmailCross = () => {
         /*убираем галочку, чистим от зеленого, если оно есть*/
         if (document.getElementById('markEmail')) {
@@ -95,7 +94,6 @@ function RegistrationForm() {
         /*показываем сообщение об ошибке*/
         document.getElementById('2PasErrorText').classList.remove('hiddenDiv');
     }
-
 
     const showPasswordSecondEye = () => {
         document.getElementById('eye_second').classList.remove('cross_Block')
@@ -209,6 +207,19 @@ function RegistrationForm() {
         }
     }
 
+    const currentEmail = getValues("email");
+    const currentPassword = getValues("password");
+
+
+    const dispatch = useDispatch()
+
+    const regInfoUpdate = () => {
+        console.log('dispatch work')
+        dispatch(updateRegistrationEmail(`${currentEmail}`))
+        dispatch(updateRegistrationPassword(`${currentPassword}`))
+
+    }
+
     const onSubmit = (data) => {
         alert(JSON.stringify(data))
         reset();
@@ -220,13 +231,7 @@ function RegistrationForm() {
         console.log('currentEmail = ' + currentEmail)
         console.log('currentPassword = ' + currentPassword)
 
-     /*   let currentUser = {
-            name: 'test',
-            surname: 'test',
-            phone: '8908',
-            email: currentEmail,
-            password: currentPassword,
-        }*/
+
 
 
         await axios.post(`${"http://localhost:8080/api/user"}`,
@@ -238,6 +243,7 @@ function RegistrationForm() {
             .then(function (response) {
                 // обработка успешного запроса
                 console.log(response);
+                regInfoUpdate()
             })
             .catch(function (error) {
                 // обработка ошибки

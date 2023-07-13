@@ -6,7 +6,7 @@ function OwnData() {
     return (
         <div>
             <Header/>
-            <OwnDataForm/>
+            <OwnDataForm />
         </div>
     );
 }
