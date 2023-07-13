@@ -9,6 +9,7 @@ import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {updateNameAsync, showUserName} from "../store/nameSlice";
 import {useEffect, useState} from "react";
+import userReducer from "../store/userSlice";
 
 
 
@@ -20,13 +21,13 @@ function Profile() {
    /* dispatch(updateNameAsync(10));*/
 
 
-    const usersProfileEmail = useSelector(state => state.registrationReducer.userEmail);
-    const userProfileName = useSelector(state => state.ownDataReducer.userName)
+    const usersProfileEmail = useSelector(state => state.userReducer.userEmail);
+    const userProfileName = useSelector(state => state.userReducer.userName)
 
 
     // const userName = 'Вячеслав' //заглушка на время адаптивной верстки
-    const userSecondName = useSelector(state => state.ownDataReducer.userSecondName)
-    const userPhone = useSelector(state => state.ownDataReducer.userPhone)
+    const userSecondName = useSelector(state => state.userReducer.userSecondName)
+    const userPhone = useSelector(state => state.userReducer.userPhone)
 
     const showOutMenu = () => {
 

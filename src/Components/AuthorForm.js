@@ -6,7 +6,6 @@ import cross from '../Assets/cross.svg';
 import eye from "../Assets/eye.svg";
 import eye_open from "../Assets/eye_open.svg";
 import {useDispatch} from "react-redux";
-import {updateEmail} from "../store/userSlice";
 
 
 function AuthorForm() {
@@ -111,7 +110,7 @@ function AuthorForm() {
     const onSubmit = (data) => {
         console.log('data.email ' + data.email)
         /*alert(JSON.stringify(data))*/
-        dispatch(updateEmail(data.email))
+        //dispatch(updateEmail(data.email))
         /*reset();*/
     }
 

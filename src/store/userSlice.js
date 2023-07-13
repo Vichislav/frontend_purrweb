@@ -1,50 +1,45 @@
 import {createSlice} from "@reduxjs/toolkit";
-import axios from "axios";
-
-const GET_URL = 'http://localhost:8080/api/user'
 
 const userSlice = createSlice({
-    name: 'users',
+    name: 'userInfo',
     initialState: {
-        users: {
-            email: 'email@gmail.com'
-        }
+        userName: "",
+        userSecondName: "",
+        userPhone: "",
+        userEmail: "",
+        userPassword: ""
     },
-    reducers: {
-        updateEmail (state, action) {
-            state.users.email = action.payload
+    reducers: { //reducers (множественное число) это набор методов **
+        updateOwnDataName (state, action) {
+            state.userName = action.payload
         },
-        addEmail (state, action) {
-            state.data.push(action.payload)
-        }
+        updateOwnDataSecondName (state, action) {
+            state.userSecondName = action.payload
+        },
+        updateOwnDataPhone (state, action) {
+            state.userPhone = action.payload
+        },
+        updateRegistrationEmail (state, action) {
+            state.userEmail = action.payload
+        },
+        updateRegistrationPassword (state, action) {
+            state.userPassword = action.payload
+        },
     }
 })
 
-export const updateEmailAsync = (data, email) => async (dispatch) => {
+//эти экшены нужно именовано импортировать туда где мы их хотим использовать, неожиданно...
+export const {
+    updateOwnDataName,
+    updateOwnDataSecondName,
+    updateOwnDataPhone,
+    updateRegistrationEmail,
+    updateRegistrationPassword
+} = userSlice.actions;
 
-    await axios.post(`${GET_URL}/${data}`)
-        .then(function (response) {
-            // обработка успешного запроса
-            const res = response.data.name;
-            console.log("res = " + res);
-            dispatch(addEmail(res));
-        })
-        .catch(function (error) {
-            // обработка ошибки
-            console.log(error);
-        })
-        .finally(function () {
-
-            console.log('axios finally');
-        });
-
-
-}
-
-
-export const {updateEmail} = userSlice.actions;
-export const {addEmail} = userSlice.actions;
-
-/*export const showUserName = (state) => state.userName; console.log("state.userName")*/
-
-export default userSlice.reducer;
+//reducer (единственное число) это асбтрактный редсюер который мы
+// и тащим в configureStore
+export default userSlice.reducer; //
+// export default это не именованный экспорт по этому этот
+// фаил импортируется как *любое имя*, например мы его
+// импортируем в index.js  в configureStore  как registrationReducer

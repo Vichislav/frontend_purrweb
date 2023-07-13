@@ -2,7 +2,7 @@
 import '../css/RegistrationForm.css'
 import '../css/AuthorForm.css'
 import {useDispatch} from "react-redux";
-import {updateRegistrationEmail, updateRegistrationPassword} from "../store/registrationSlice";
+import {updateRegistrationEmail, updateRegistrationPassword} from "../store/userSlice";
 
 import { Link } from 'react-router-dom'
 import {useForm} from "react-hook-form";
@@ -11,7 +11,6 @@ import eye from "../Assets/eye.svg";
 import eye_open from "../Assets/eye_open.svg";
 import mark from "../Assets/green_mark.svg";
 import axios from "axios";
-import {addEmail} from "../store/userSlice";
 
 
 function RegistrationForm() {

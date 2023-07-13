@@ -7,11 +7,8 @@ import { Link } from 'react-router-dom'
 import {useForm} from "react-hook-form";
 import cross from "../Assets/cross.svg";
 import mark from "../Assets/green_mark.svg";
-import {updateName} from "../store/nameSlice";
-import {updateSecondName} from "../store/secondNameSlice";
-import {updatePhone} from "../store/phoneSlice";
 import {useDispatch} from "react-redux";
-import {updateOwnDataName, updateOwnDataSecondName, updateOwnDataPhone} from "../store/ownDataSlice";
+import {updateOwnDataName, updateOwnDataSecondName, updateOwnDataPhone} from "../store/userSlice";
 
 
 
