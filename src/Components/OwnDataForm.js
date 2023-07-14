@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom'
 import {useForm} from "react-hook-form";
 import cross from "../Assets/cross.svg";
 import mark from "../Assets/green_mark.svg";
-import {useDispatch} from "react-redux";
-import {updateOwnDataName, updateOwnDataSecondName, updateOwnDataPhone} from "../store/userSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {updateOwnDataName, updateOwnDataSecondName, updateOwnDataPhone, postUser} from "../store/userSlice";
 
 
 
@@ -36,6 +36,10 @@ function OwnDataForm() {
     const userName = getValues('name');
     const userSecondName = getValues('secondName');
     const userPhone = getValues('phone');
+    const userEmail = useSelector(state => state.userReducer.userEmail);
+    const userPassword = useSelector(state => state.userReducer.userPassword);
+
+
 
     let dirtyCount = false; /*переключатель для оценки изменяемости любого из инпутов*/
     let dirtyNameCount = false; /*переключатель для оценки изменяемости поля email*/
@@ -188,6 +192,8 @@ function OwnDataForm() {
         dispatch(updateOwnDataName(`${userName}`))
         dispatch(updateOwnDataSecondName(`${userSecondName}`))
         dispatch(updateOwnDataPhone(`${userPhone}`))
+        console.log( "onSubmit " + userName, userSecondName, userPhone, userEmail, userPassword)
+        dispatch(postUser(userName, userSecondName, userPhone, userEmail, userPassword ))
         /*reset();*/
     }
 

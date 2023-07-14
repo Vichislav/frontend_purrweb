@@ -3,10 +3,10 @@ const db = require('../db')
 class UserController {
 
     async createUser(req, res) {
-        const {name, surname} = req.body
+        const {name, surname, email, phone, password} = req.body
         const newPerson
-            = await db.query('INSERT INTO person (name, surname) VALUES ($1, $2) RETURNING *',
-            [name, surname])
+            = await db.query('INSERT INTO person (name, surname, email, phone, password) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+            [name, surname, email, phone, password])
         res.json(newPerson.rows[0])
     }
 
