@@ -15,9 +15,16 @@ class UserController {
         res.json(users.rows)
     }
 
-    async getOneUser(req, res) {
+   /* async getOneUser(req, res) {
         const id = req.params.id
         const user = await db.query('SELECT * FROM person where id = $1', [id])
+        res.json(user.rows[0])
+    }*/
+
+    async getOneUser(req, res) {
+        const email = req.params.email
+        //const password = req.params.password
+        const user = await db.query('SELECT * FROM person where email = $1', [email])
         res.json(user.rows[0])
     }
 

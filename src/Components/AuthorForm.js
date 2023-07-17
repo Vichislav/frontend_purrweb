@@ -6,6 +6,7 @@ import cross from '../Assets/cross.svg';
 import eye from "../Assets/eye.svg";
 import eye_open from "../Assets/eye_open.svg";
 import {useDispatch} from "react-redux";
+import {getUser} from "../store/userSlice";
 
 
 function AuthorForm() {
@@ -15,7 +16,7 @@ function AuthorForm() {
     /*const newEmail = () => dispatch(updateEmail())*/
 
     const {
-        register, /*позволяет регистрировать поля для формы*/
+        register, getValues, /*позволяет регистрировать поля для формы*/
         formState: {
             errors, isValid, isDirty, dirtyFields, isValidating,
         },
@@ -29,6 +30,9 @@ function AuthorForm() {
             password: '',
         }
     });
+
+    const email = getValues('email')
+    const password = getValues('password')
 
     let dirtyCount = false;
 
@@ -107,8 +111,10 @@ function AuthorForm() {
 
     }
 
-    const onSubmit = (data) => {
-        console.log('data.email ' + data.email)
+    const onSubmit = () => {
+        console.log('email & password ' + email, password)
+        dispatch(getUser(email, password))
+
         /*alert(JSON.stringify(data))*/
         //dispatch(updateEmail(data.email))
         /*reset();*/
@@ -178,7 +184,8 @@ function AuthorForm() {
                   </div>
               </div>
               <div className="wrap__Container_Bottom">
-                  <Link to="/OwnData" className="wrap__Container_Bottom_Link" >
+                  {/*to="/OwnData"*/}
+                  <Link to="/Profile" className="wrap__Container_Bottom_Link" >
                       <button type="submit" onMouseDown={handleSubmit(onSubmit)}  className="wrap__Container_Bottom_Btn" disabled={!isValid} form='formName'>
                           Продолжить
                       </button>

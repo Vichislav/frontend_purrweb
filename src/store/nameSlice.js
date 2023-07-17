@@ -16,7 +16,7 @@ const nameSlice = createSlice({
     }
 })
 
-/*export const updateNameAsync = (data) => async (dispatch) => {
+export const updateNameAsync = (data) => async (dispatch) => {
 
         await axios.get(`${GET_URL}/${data}`)
             .then(function (response) {
@@ -35,7 +35,7 @@ const nameSlice = createSlice({
             });
 
 
-}*/
+}
 
 
 export const {updateName} = nameSlice.actions;

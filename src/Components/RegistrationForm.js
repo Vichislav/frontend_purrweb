@@ -16,7 +16,7 @@ import axios from "axios";
 function RegistrationForm() {
 
     const {
-        register, getValues,/*позволяет регистрировать поля для формы*/
+        register, getValues,/*позволяет регистрировать поля для формы, получать данные inputs*/
         formState: {
             errors, isValid, isDirty, dirtyFields, isValidating, validate, formValues,
         },
@@ -225,7 +225,7 @@ function RegistrationForm() {
         document.getElementById('eye').classList.add('cross_Block');
     }
 
-    const  createNewUser = async () => {
+   /* const  createNewUser = async () => {
         console.log('createNewUser work')
         console.log('currentEmail = ' + currentEmail)
         console.log('currentPassword = ' + currentPassword)
@@ -253,7 +253,7 @@ function RegistrationForm() {
             });
 
 
-    }
+    }*/
 
 
     return (
@@ -384,7 +384,8 @@ function RegistrationForm() {
                 </div>
                 <div className="wrap__Container_Bottom">
                     <Link to="/OwnData" className="wrap__Container_Bottom_Link" >
-                        <button type="submit" onMouseDown={handleSubmit(createNewUser)}  className="wrap__Container_Bottom_Btn" disabled={!isValid}>
+                        {/*onMouseDown={handleSubmit(regInfoUpdate)}*/}
+                        <button type="submit" onMouseDown={handleSubmit(regInfoUpdate)} className="wrap__Container_Bottom_Btn" disabled={!isValid}>
                             Продолжить
                         </button>
                     </Link>

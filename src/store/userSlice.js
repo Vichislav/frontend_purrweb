@@ -1,8 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
-import {updateName} from "./nameSlice";
-
-const POST_URL = 'http://localhost:8080/api/user'
 
 const userSlice = createSlice({
     name: 'userInfo',
@@ -34,7 +31,7 @@ const userSlice = createSlice({
 
 export const postUser = (name, surname, phone, email, password) => async () => {
 
-    console.log( "postUser " + name, surname, phone, email, password)
+    const POST_URL = 'http://localhost:8080/api/user'
 
     await axios.post(`${"http://localhost:8080/api/user"}`,
         {
@@ -47,6 +44,35 @@ export const postUser = (name, surname, phone, email, password) => async () => {
         .then(function (response) {
             // обработка успешного запроса
             console.log(response);
+        })
+        .catch(function (error) {
+            // обработка ошибки
+            console.log(error);
+        })
+        .finally(function () {
+            console.log('axios finally');
+        });
+
+
+}
+export const getUser = (email, password) => async (dispatch) => {
+    const GET_URL = 'http://localhost:8080/api/user'
+
+    await axios.get(`${GET_URL}/${email}`)
+
+        .then(function (response) {
+            // обработка успешного запроса
+            const dbName = response.data.name
+            const dbSurname = response.data.surname
+            const dbPhone = response.data.phone
+            const dbEmail = response.data.email
+            const dbPassword =  response.data.password
+            if(dbPassword === password) {
+                dispatch(updateOwnDataName(dbName))
+                dispatch(updateOwnDataSecondName(dbSurname))
+                dispatch(updateOwnDataPhone(dbPhone))
+                dispatch(updateRegistrationEmail(dbEmail))
+            }
         })
         .catch(function (error) {
             // обработка ошибки
