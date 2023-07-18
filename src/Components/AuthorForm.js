@@ -1,12 +1,12 @@
 /*import '../css/Reset.css'*/
 import '../css/AuthorForm.css';
-import { Link } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import cross from '../Assets/cross.svg';
 import eye from "../Assets/eye.svg";
 import eye_open from "../Assets/eye_open.svg";
-import {useDispatch} from "react-redux";
-import {getUser} from "../store/userSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {checkUser, getUser} from "../store/userSlice";
 
 
 function AuthorForm() {
@@ -39,6 +39,12 @@ function AuthorForm() {
     const onDirty = () => { /*вызывается если isDirty: true*/
         dirtyCount = true;
     }
+
+    const navigate = useNavigate();
+
+    const enterToProfile = () => {
+        navigate('/Profile');
+    };
 
     /*Error in Email*/
     const showEmailCross = () => {
@@ -111,14 +117,26 @@ function AuthorForm() {
 
     }
 
+
+
     const onSubmit = () => {
         console.log('email & password ' + email, password)
-        dispatch(getUser(email, password))
+        dispatch(checkUser(email, password))
+        console.log('dbPassword ' + dbPassword)
+        if (password === dbPassword) {
+            dispatch(getUser(email, password))
+            enterToProfile()
+        } else {
+            console.log('else work with ' + dbPassword)
+            document.getElementById('errorText').classList.remove('hiddenDiv'); /*показали сообщение*/
+            reset()
 
-        /*alert(JSON.stringify(data))*/
-        //dispatch(updateEmail(data.email))
-        /*reset();*/
+        }
+
     }
+    //оказывается если const dbPassword находится перед методом то он не успевает обноваится
+    //и система не видит значение dbPassword ... круто
+    const dbPassword = useSelector(state => state.userReducer.userPassword)
 
     return (
         <div className="wrap">
@@ -185,7 +203,7 @@ function AuthorForm() {
               </div>
               <div className="wrap__Container_Bottom">
                   {/*to="/OwnData"*/}
-                  <Link to="/Profile" className="wrap__Container_Bottom_Link" >
+                  <Link  className="wrap__Container_Bottom_Link" >
                       <button type="submit" onMouseDown={handleSubmit(onSubmit)}  className="wrap__Container_Bottom_Btn" disabled={!isValid} form='formName'>
                           Продолжить
                       </button>

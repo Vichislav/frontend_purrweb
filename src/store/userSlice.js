@@ -55,8 +55,10 @@ export const postUser = (name, surname, phone, email, password) => async () => {
 
 
 }
+
+const GET_URL = 'http://localhost:8080/api/user'
+
 export const getUser = (email, password) => async (dispatch) => {
-    const GET_URL = 'http://localhost:8080/api/user'
 
     await axios.get(`${GET_URL}/${email}`)
 
@@ -67,12 +69,32 @@ export const getUser = (email, password) => async (dispatch) => {
             const dbPhone = response.data.phone
             const dbEmail = response.data.email
             const dbPassword =  response.data.password
-            if(dbPassword === password) {
-                dispatch(updateOwnDataName(dbName))
-                dispatch(updateOwnDataSecondName(dbSurname))
-                dispatch(updateOwnDataPhone(dbPhone))
-                dispatch(updateRegistrationEmail(dbEmail))
-            }
+
+            dispatch(updateOwnDataName(dbName))
+            dispatch(updateOwnDataSecondName(dbSurname))
+            dispatch(updateOwnDataPhone(dbPhone))
+            dispatch(updateRegistrationEmail(dbEmail))
+
+        })
+        .catch(function (error) {
+            // обработка ошибки
+            console.log(error);
+        })
+        .finally(function () {
+            console.log('axios finally');
+        });
+
+
+}
+
+export const checkUser = (email, password) => async (dispatch) => {
+
+    await axios.get(`${GET_URL}/${email}`)
+
+        .then(function (response) {
+            // обработка успешного запроса
+            const dbPassword =  response.data.password
+            dispatch(updateRegistrationPassword(dbPassword))
         })
         .catch(function (error) {
             // обработка ошибки
