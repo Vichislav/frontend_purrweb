@@ -200,7 +200,7 @@ function OwnDataForm() {
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="wrap__own" id="formName">
             <div className='wrap__own_backBtn_box'>
-                <Link to="/" className="wrap__own_backBtn">
+                <Link to="/registration" className="wrap__own_backBtn">
                     <div className="wrap__own_vector">
                         <img
                             className="wrap__own_vector_item"

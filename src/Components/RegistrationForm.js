@@ -1,10 +1,10 @@
 /*import '../css/Reset.css'*/
 import '../css/RegistrationForm.css'
 import '../css/AuthorForm.css'
-import {useDispatch} from "react-redux";
-import {updateRegistrationEmail, updateRegistrationPassword} from "../store/userSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {checkUser, getUser, updateRegistrationEmail, updateRegistrationPassword} from "../store/userSlice";
 
-import { Link } from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import {useForm} from "react-hook-form";
 import cross from "../Assets/cross.svg";
 import eye from "../Assets/eye.svg";
@@ -50,6 +50,12 @@ function RegistrationForm() {
     const onSecondDirtyPasswordCount = () => {
         dirtySecondPasswordCount = true;
     }
+
+    const navigate = useNavigate();
+
+    const enterToOwnData = () => {
+        navigate('/OwnData');
+    };
 
     const showEmailCross = () => {
         /*убираем галочку, чистим от зеленого, если оно есть*/
@@ -206,18 +212,52 @@ function RegistrationForm() {
         }
     }
 
+    const RemoveAllGreenMarks = () => {
+        /*убираем галочку, чистим от зеленого, если оно есть поле Email*/
+        if (document.getElementById('markEmail')) {
+            document.getElementById('markEmail').classList.add('cross_Block');
+            document.getElementById('input_email').classList.remove('green_border');
+        }
+        /*убираем галочку, чистим от зеленого, если оно есть поле Password*/
+        if (document.getElementById('markPassword')) {
+            document.getElementById('markPassword').classList.add('cross_Block');
+            document.getElementById('input_pas').classList.remove('green_border');
+        }
+        /*убираем галочку, чистим от зеленого, если оно есть поле secondPassword*/
+        if (document.getElementById('markSecondPassword')) {
+            document.getElementById('markSecondPassword').classList.add('cross_Block');
+            document.getElementById('input_second_pas').classList.remove('green_border');
+        }
+    }
+
     const currentEmail = getValues("email");
     const currentPassword = getValues("password");
 
 
     const dispatch = useDispatch()
 
+    const dbPassword = useSelector(state => state.userReducer.userPassword)
+
     const regInfoUpdate = () => {
-        console.log('dispatch work')
-        dispatch(updateRegistrationEmail(`${currentEmail}`))
-        dispatch(updateRegistrationPassword(`${currentPassword}`))
+
+        console.log('email & password ' + currentEmail, currentPassword)
+        dispatch(checkUser(currentEmail, currentPassword))
+        console.log('dbPassword ' + dbPassword)
+        if (currentPassword === dbPassword) {
+            console.log('else work with ' + dbPassword)
+            alert("Пользователь с таким email и password уже существует") /*показали сообщение*/
+            reset()
+            RemoveAllGreenMarks()
+        } else {
+            console.log('dispatch work')
+            dispatch(updateRegistrationEmail(`${currentEmail}`))
+            dispatch(updateRegistrationPassword(`${currentPassword}`))
+            enterToOwnData()
+        }
 
     }
+
+
 
     const onSubmit = (data) => {
         alert(JSON.stringify(data))
@@ -225,35 +265,7 @@ function RegistrationForm() {
         document.getElementById('eye').classList.add('cross_Block');
     }
 
-   /* const  createNewUser = async () => {
-        console.log('createNewUser work')
-        console.log('currentEmail = ' + currentEmail)
-        console.log('currentPassword = ' + currentPassword)
 
-
-
-
-        await axios.post(`${"http://localhost:8080/api/user"}`,
-            {
-            "name": `${currentEmail}`,
-            "surname": "ivanchale de rikotto",
-                "email" : "currentEmail",
-        })
-            .then(function (response) {
-                // обработка успешного запроса
-                console.log(response);
-                regInfoUpdate()
-            })
-            .catch(function (error) {
-                // обработка ошибки
-                console.log(error);
-            })
-            .finally(function () {
-                console.log('axios finally');
-            });
-
-
-    }*/
 
 
     return (
@@ -383,7 +395,7 @@ function RegistrationForm() {
                     </div>
                 </div>
                 <div className="wrap__Container_Bottom">
-                    <Link to="/OwnData" className="wrap__Container_Bottom_Link" >
+                    <Link  className="wrap__Container_Bottom_Link" >
                         {/*onMouseDown={handleSubmit(regInfoUpdate)}*/}
                         <button type="submit" onMouseDown={handleSubmit(regInfoUpdate)} className="wrap__Container_Bottom_Btn" disabled={!isValid}>
                             Продолжить

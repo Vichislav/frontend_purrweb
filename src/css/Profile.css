@@ -339,7 +339,8 @@
 
 @media only screen and (max-width: 670px) {
     .wrap__Data {
-        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: start;
         padding: 36px 0px 0px 16px /*16 слева*/
     }
 }

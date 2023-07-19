@@ -68,7 +68,7 @@ export const getUser = (email, password) => async (dispatch) => {
             const dbSurname = response.data.surname
             const dbPhone = response.data.phone
             const dbEmail = response.data.email
-            const dbPassword =  response.data.password
+            //const dbPassword =  response.data.password
 
             dispatch(updateOwnDataName(dbName))
             dispatch(updateOwnDataSecondName(dbSurname))
