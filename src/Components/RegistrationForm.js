@@ -11,6 +11,7 @@ import eye from "../Assets/eye.svg";
 import eye_open from "../Assets/eye_open.svg";
 import mark from "../Assets/green_mark.svg";
 import axios from "axios";
+import cross_gray from "../Assets/cross_gray.svg";
 
 
 function RegistrationForm() {
@@ -245,9 +246,7 @@ function RegistrationForm() {
         console.log('dbPassword ' + dbPassword)
         if (currentPassword === dbPassword) {
             console.log('else work with ' + dbPassword)
-            alert("Пользователь с таким email и password уже существует") /*показали сообщение*/
-            reset()
-            RemoveAllGreenMarks()
+            showOutMenu()
         } else {
             console.log('dispatch work')
             dispatch(updateRegistrationEmail(`${currentEmail}`))
@@ -256,11 +255,31 @@ function RegistrationForm() {
         }
 
     }
+    const HideOutMenu = () => {
 
+        let element = document.getElementById('Out_window');
+        if (element !== null) {
+            element.style.visibility = 'hidden';
+            reset()
+            RemoveAllGreenMarks()
+        }
+        else {
+            console.log('HideOutMenu else work')
+        }
+    }
+    const showOutMenu = () => {
 
+        let element = document.getElementById('Out_window');
+        if (element !== null) {
+            element.style.visibility = 'visible';
+        }
+        else {
+            console.log('showOutMenu else work')
+        }
 
-    const onSubmit = (data) => {
-        alert(JSON.stringify(data))
+    }
+
+    const onSubmit = () => {
         reset();
         document.getElementById('eye').classList.add('cross_Block');
     }
@@ -270,6 +289,30 @@ function RegistrationForm() {
 
     return (
         <div className="wrap">
+            <div className="wrap__Out" id={'Out_window'}>
+                <div className="wrap__Out_back"></div>
+                <div className="wrap__Out_menu">
+                    <div className="wrap__Out_cross" onClick={HideOutMenu}>
+                        <img
+                            className="cross_gray"
+                            src={cross_gray}
+                            alt="logo not found"
+                        />
+                    </div>
+                    <div className="wrap__Out_text">
+                        <p className="wrap__Out_text_item_Reg">
+                            Пользователь с таким email и password уже существует.
+                        </p>
+                    </div>
+                    <div className="wrap__Out_btn_Reg">
+                        <Link  className="wrap__Out_link">
+                            <button type="submit" onClick={HideOutMenu} className="wrap__Out_exit">
+                                Ok
+                            </button>
+                        </Link>
+                    </div>
+                </div>
+            </div>
             <form onSubmit={handleSubmit(onSubmit)} className="wrap__Container_reg">
                 <p className="wrap__Container_Head">Регистрация</p>
                 <div className="wrap__Container_Middle_reg">
