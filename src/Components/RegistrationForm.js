@@ -10,7 +10,6 @@ import cross from "../Assets/cross.svg";
 import eye from "../Assets/eye.svg";
 import eye_open from "../Assets/eye_open.svg";
 import mark from "../Assets/green_mark.svg";
-import axios from "axios";
 import cross_gray from "../Assets/cross_gray.svg";
 
 

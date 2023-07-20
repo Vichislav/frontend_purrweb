@@ -369,6 +369,14 @@
     line-height: 24px;
     color: #0B1332;
 }
+.wrap__Edit_Input {
+    width: 65px;
+    height: 24px;
+    margin-top: 6px;
+    padding: 0 0 0 2px;
+    border-radius: 2px;
+    background-color: #fcbdbd;
+}
 .wrap__Data_secondName {
     margin-left: 60px;
 }

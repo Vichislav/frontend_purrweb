@@ -4,6 +4,7 @@ import axios from "axios";
 const userSlice = createSlice({
     name: 'userInfo',
     initialState: {
+        userId: "",
         userName: "",
         userSecondName: "",
         userPhone: "",
@@ -11,6 +12,11 @@ const userSlice = createSlice({
         userPassword: ""
     },
     reducers: { //reducers (множественное число) это набор методов **
+
+        updateOwnDataID (state, action) {
+            state.userId = action.payload
+        },
+
         updateOwnDataName (state, action) {
             state.userName = action.payload
         },
@@ -56,6 +62,29 @@ export const postUser = (name, surname, phone, email, password) => async () => {
 
 }
 
+export const updateUser = (id, name, surname) => async () => {
+
+    await axios.put(`${"http://localhost:8080/api/user"}`,
+        {
+            "id":`${id}`,
+            "name": `${name}`,
+            "surname": `${surname}`,
+        })
+        .then(function (response) {
+            // обработка успешного запроса
+            console.log(response);
+        })
+        .catch(function (error) {
+            // обработка ошибки
+            console.log(error);
+        })
+        .finally(function () {
+            console.log('axios finally');
+        });
+
+
+}
+
 const GET_URL = 'http://localhost:8080/api/user'
 
 export const getUser = (email, password) => async (dispatch) => {
@@ -68,12 +97,14 @@ export const getUser = (email, password) => async (dispatch) => {
             const dbSurname = response.data.surname
             const dbPhone = response.data.phone
             const dbEmail = response.data.email
+            const dbId = response.data.id
             //const dbPassword =  response.data.password
 
             dispatch(updateOwnDataName(dbName))
             dispatch(updateOwnDataSecondName(dbSurname))
             dispatch(updateOwnDataPhone(dbPhone))
             dispatch(updateRegistrationEmail(dbEmail))
+            dispatch(updateOwnDataID(dbId))
 
         })
         .catch(function (error) {
@@ -113,7 +144,8 @@ export const {
     updateOwnDataSecondName,
     updateOwnDataPhone,
     updateRegistrationEmail,
-    updateRegistrationPassword
+    updateRegistrationPassword,
+    updateOwnDataID
 } = userSlice.actions;
 
 //reducer (единственное число) это асбтрактный редсюер который мы

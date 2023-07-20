@@ -9,7 +9,7 @@ import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {updateNameAsync, showUserName} from "../store/nameSlice";
 import {useEffect, useState} from "react";
-import userReducer from "../store/userSlice";
+import {updateUser, updateOwnDataSecondName} from "../store/userSlice";
 
 
 
@@ -18,7 +18,14 @@ function Profile() {
 
     const dispatch = useDispatch();
 
-   /* dispatch(updateNameAsync(10));*/
+    const [onEdit, setonEdit] = useState(false)
+
+    const [editInput, setEditInput] = useState('');
+
+
+    const handleEditInput = (event) => {
+        setEditInput(event.target.value)
+    }
 
 
     const usersProfileEmail = useSelector(state => state.userReducer.userEmail);
@@ -28,6 +35,7 @@ function Profile() {
     // const userName = 'Вячеслав' //заглушка на время адаптивной верстки
     const userSecondName = useSelector(state => state.userReducer.userSecondName)
     const userPhone = useSelector(state => state.userReducer.userPhone)
+    const userId = useSelector(state => state.userReducer.userId)
 
     const showOutMenu = () => {
 
@@ -50,13 +58,17 @@ function Profile() {
             console.log('HideOutMenu else work')
         }
     }
-
-    /*const showName = () => {
-        setName(userName);
-        console.log("showName userName = " + userName)
-        console.log("showName name = " + name)
+    const onEditToggle = () => {
+        setonEdit(!onEdit)
+        console.log("onEdit " + onEdit)
     }
-    setTimeout(showName, 1000)*/
+
+   const onEditComplete = () => {
+       console.log("userId " + userId )
+       onEditToggle()
+       dispatch(updateOwnDataSecondName(editInput))
+       dispatch(updateUser(userId, editInput, editInput))
+   }
 
     return (
         <div className="wrap__Profile">
@@ -116,13 +128,13 @@ function Profile() {
                     <div className="wrap__Title_text">
                         Мой профиль
                     </div>
-                    <div className="wrap__Title_img">
+                    <div className="wrap__Title_img" onClick={onEditComplete}>
                         <img
                             src={pencil}
                             alt="logo not found"
                         />
                     </div>
-                    <div className="wrap__Title_btn">
+                    <div className="wrap__Title_btn" onClick={onEditToggle}>
                         Редактировать
                     </div>
                 </div>
@@ -134,7 +146,14 @@ function Profile() {
                         </div>
                         <div className="wrap__Data_secondName">
                             <div className="wrap__Data_title">Фамилия</div>
-                            <div className="wrap__Data_text">{userSecondName}</div>
+                            {onEdit ? (
+                                <div>
+                                    <input type="text" id={"secondNameInput"} placeholder={`${userSecondName}`}
+                                    className={'wrap__Edit_Input'} onChange={handleEditInput} />
+                                </div>
+                            ) : (
+                                <div className="wrap__Data_text">{userSecondName}</div>
+                            )}
                         </div>
                     </div>
                     <div className="wrap__Data_right">
