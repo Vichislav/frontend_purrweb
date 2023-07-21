@@ -126,6 +126,7 @@ export const checkUser = (email, password) => async (dispatch) => {
             // обработка успешного запроса
             const dbPassword =  response.data.password
             dispatch(updateRegistrationPassword(dbPassword))
+            return dbPassword
         })
         .catch(function (error) {
             // обработка ошибки
@@ -134,7 +135,6 @@ export const checkUser = (email, password) => async (dispatch) => {
         .finally(function () {
             console.log('axios finally');
         });
-
 
 }
 

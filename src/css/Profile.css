@@ -279,6 +279,11 @@
     align-items: center;
     padding: 48px 0px 0px 120px ;
 }
+.wrap__Title_menu {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1%;
+}
 
 @media only screen and (max-width: 1320px) {
     .wrap__Title {

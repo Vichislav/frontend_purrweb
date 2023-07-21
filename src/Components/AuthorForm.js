@@ -6,7 +6,8 @@ import cross from '../Assets/cross.svg';
 import eye from "../Assets/eye.svg";
 import eye_open from "../Assets/eye_open.svg";
 import {useDispatch, useSelector} from "react-redux";
-import {checkUser, getUser} from "../store/userSlice";
+import {checkUser, getUser, updateRegistrationPassword} from "../store/userSlice";
+import axios from "axios";
 
 
 function AuthorForm() {
@@ -118,25 +119,36 @@ function AuthorForm() {
     }
 
 
+    const onSubmit = async () => {
+        console.log('email ' + email)
+        const GET_URL = 'http://localhost:8080/api/user'
+        await axios.get(`${GET_URL}/${email}`)
 
-    const onSubmit = () => {
-        console.log('email & password ' + email, password)
-        dispatch(checkUser(email, password))
-        console.log('dbPassword ' + dbPassword)
-        if (password === dbPassword) {
-            dispatch(getUser(email, password))
-            enterToProfile()
-        } else {
-            console.log('else work with ' + dbPassword)
-            document.getElementById('errorText').classList.remove('hiddenDiv'); /*показали сообщение*/
-            reset()
-
-        }
+            .then(function (response) {
+                // обработка успешного запроса
+                const dbPassword =  response.data.password
+                dispatch(updateRegistrationPassword(dbPassword))
+                if (password === dbPassword) {
+                    dispatch(getUser(email, password))
+                    enterToProfile()
+                } else {
+                    console.log('else work with ' + dbPassword)
+                    document.getElementById('errorText').classList.remove('hiddenDiv'); /*показали сообщение*/
+                    reset()
+                }
+            })
+            .catch(function (error) {
+                // обработка ошибки
+                console.log(error);
+            })
+            .finally(function () {
+                console.log('axios finally');
+            });
 
     }
-    //оказывается если const dbPassword находится перед методом то он не успевает обноваится
-    //и система не видит значение dbPassword ... круто
-    const dbPassword = useSelector(state => state.userReducer.userPassword)
+
+
+
 
     return (
         <div className="wrap">

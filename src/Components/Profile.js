@@ -4,12 +4,13 @@ import '../css/Reset.css'
 import out from "../Assets/out.svg";
 import pencil from "../Assets/pencil.svg";
 import cross_gray from "../Assets/cross_gray.svg";
+import cross from "../Assets/cross.svg";
 import illustration from "../Assets/illustration.svg";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {updateNameAsync, showUserName} from "../store/nameSlice";
 import {useEffect, useState} from "react";
-import {updateUser, updateOwnDataSecondName} from "../store/userSlice";
+import {updateUser, updateOwnDataSecondName, updateOwnDataName} from "../store/userSlice";
 
 
 
@@ -20,11 +21,15 @@ function Profile() {
 
     const [onEdit, setonEdit] = useState(false)
 
-    const [editInput, setEditInput] = useState('');
+    const [inputSecondName, setInputSecondName] = useState('');
+    const [inputName, setInputName] = useState('');
 
 
-    const handleEditInput = (event) => {
-        setEditInput(event.target.value)
+    const editInputSecondName = (event) => {
+        setInputSecondName(event.target.value)
+    }
+    const editInputName = (event) => {
+        setInputName(event.target.value)
     }
 
 
@@ -66,9 +71,13 @@ function Profile() {
    const onEditComplete = () => {
        console.log("userId " + userId )
        onEditToggle()
-       dispatch(updateOwnDataSecondName(editInput))
-       dispatch(updateUser(userId, editInput, editInput))
+       dispatch(updateOwnDataSecondName(inputSecondName))
+       dispatch(updateOwnDataName(inputName))
+       dispatch(updateUser(userId, inputName, inputSecondName))
    }
+    const offEditComplete = () => {
+        onEditToggle()
+    }
 
     return (
         <div className="wrap__Profile">
@@ -128,28 +137,54 @@ function Profile() {
                     <div className="wrap__Title_text">
                         Мой профиль
                     </div>
-                    <div className="wrap__Title_img" onClick={onEditComplete}>
-                        <img
-                            src={pencil}
-                            alt="logo not found"
-                        />
-                    </div>
-                    <div className="wrap__Title_btn" onClick={onEditToggle}>
-                        Редактировать
-                    </div>
+                    {onEdit ? (
+                        <div className="wrap__Title_menu">
+                            <div className="wrap__Title_img" onClick={onEditComplete}>
+                                <img
+                                    src={pencil}
+                                    alt="logo not found"
+                                />
+                            </div>
+                            <div className="wrap__Title_img" onClick={offEditComplete}>
+                                <img
+                                    src={cross}
+                                    alt="logo not found"
+                                />
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="wrap__Title_menu">
+                            <div className="wrap__Title_img" onClick={onEditToggle}>
+                                <img
+                                    src={pencil}
+                                    alt="logo not found"
+                                />
+                            </div>
+                            <div className="wrap__Title_btn" onClick={onEditToggle}>
+                                Редактировать
+                            </div>
+                        </div>
+                    )}
                 </div>
                 <div className="wrap__Data">
                     <div className="wrap__Data_left">
                         <div className="wrap__Data_name">
                             <div className="wrap__Data_title">Имя</div>
-                            <div className="wrap__Data_text">{userProfileName}</div>
+                            {onEdit ? (
+                                <div>
+                                    <input type="text" id={"nameInput"} placeholder={`${userProfileName}`}
+                                           className={'wrap__Edit_Input'} onChange={editInputName} />
+                                </div>
+                            ) : (
+                                <div className="wrap__Data_text">{userProfileName}</div>
+                            )}
                         </div>
                         <div className="wrap__Data_secondName">
                             <div className="wrap__Data_title">Фамилия</div>
                             {onEdit ? (
                                 <div>
                                     <input type="text" id={"secondNameInput"} placeholder={`${userSecondName}`}
-                                    className={'wrap__Edit_Input'} onChange={handleEditInput} />
+                                    className={'wrap__Edit_Input'} onChange={editInputSecondName} />
                                 </div>
                             ) : (
                                 <div className="wrap__Data_text">{userSecondName}</div>
