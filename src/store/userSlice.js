@@ -5,10 +5,10 @@ const userSlice = createSlice({
     name: 'userInfo',
     initialState: {
         userId: "",
-        userName: "",
-        userSecondName: "",
-        userPhone: "",
-        userEmail: "",
+        userName: "Name",
+        userSecondName: "Surname",
+        userPhone: "89998887766",
+        userEmail: "test@mail.ru",
         userPassword: ""
     },
     reducers: { //reducers (множественное число) это набор методов **
