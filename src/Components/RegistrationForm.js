@@ -57,48 +57,23 @@ function RegistrationForm() {
         navigate('/OwnData');
     };
 
-    const showEmailCross = () => {
-        /*убираем галочку, чистим от зеленого, если оно есть*/
-        if (document.getElementById('markEmail')) {
-            document.getElementById('markEmail').classList.add('cross_Block');
-            document.getElementById('input_email').classList.remove('green_border');
+    const showCross = (mark, cross, input, errorText) => {
+        /*убираем галочку и зеленый цвет инпута*/
+        if (document.getElementById(`${mark}`)) { /*есть ли галочка*/
+            document.getElementById(`${mark}`).classList.add('cross_Block'); /*блокируем галочку*/
+            document.getElementById(`${input}`).classList.remove('green_border'); /*убираем зеленый цвет*/
         }
         /*показываем крестик, красим в красное*/
-        document.getElementById('crossEmail').classList.remove('cross_Block');
-        document.getElementById('input_email').classList.add('red_border');
+        document.getElementById(`${cross}`).classList.remove('cross_Block');
+        document.getElementById(`${input}`).classList.add('red_border');
         /*показываем сообщение об ошибке*/
-        document.getElementById('EmailErrorText').classList.remove('hiddenDiv');
-    }
-
-    const showPasswordCross = () => {
-        /*убираем галочку, чистим от зеленого, если оно есть*/
-        if (document.getElementById('markPassword')) {
-            document.getElementById('markPassword').classList.add('cross_Block');
-            document.getElementById('input_pas').classList.remove('green_border');
-        }
-        /*показываем крестик, красим в красное*/
-        document.getElementById('crossPassword').classList.remove('cross_Block')
-        document.getElementById('input_pas').classList.add('red_border');
-
-        /*показываем сообщение об ошибке*/
-        document.getElementById('PasErrorText').classList.remove('hiddenDiv');
+        document.getElementById(`${errorText}`).classList.remove('hiddenDiv');
     }
 
     const showPasswordEye = () => {
         document.getElementById('eye').classList.remove('cross_Block')
     }
 
-    const showSecondPasswordCross = () => {
-        if (document.getElementById('markSecondPassword')) {
-            document.getElementById('markSecondPassword').classList.add('cross_Block');
-            document.getElementById('input_second_pas').classList.remove('green_border');
-        }
-        /*показываем крестик, красим в красное*/
-        document.getElementById('crossSecondPassword').classList.remove('cross_Block')
-        document.getElementById('input_second_pas').classList.add('red_border');
-        /*показываем сообщение об ошибке*/
-        document.getElementById('2PasErrorText').classList.remove('hiddenDiv');
-    }
 
     const showPasswordSecondEye = () => {
         document.getElementById('eye_second').classList.remove('cross_Block')
@@ -385,9 +360,9 @@ function RegistrationForm() {
                         {dirtyFields?.email && onDirtyEmailCount()}
                         {dirtyFields?.password && onDirtyPasswordCount()}
                         {dirtyFields?.password_again && onSecondDirtyPasswordCount()}
-                        {errors?.email && showEmailCross()}
+                        {errors?.email && showCross('markEmail', 'crossEmail', 'input_email', 'EmailErrorText')}
                         {!errors?.email && ValidEmail()}
-                        {errors?.password && showPasswordCross()}
+                        {errors?.password && showCross('markPassword', 'crossPassword',  'input_pas', 'PasErrorText')}
                         {!errors?.password && ValidPassword()}
                     </div>
                     <label className="wrap__Container_Middle_SecPassword">
@@ -431,7 +406,7 @@ function RegistrationForm() {
                     </label>
                     <p id={'2PasErrorText'} className="wrap__Container_Error hiddenDiv">"Пароли не совпадают"</p>
                     <div className="wrap__Container_Middle_Error">
-                        {errors?.password_again && showSecondPasswordCross()}
+                        {errors?.password_again && showCross('markSecondPassword', 'crossSecondPassword',  'input_second_pas', '2PasErrorText')}
                         {dirtyFields?.password_again && showPasswordSecondEye()}
                         {!errors?.password_again && ValidSecondPassword()}
                     </div>
