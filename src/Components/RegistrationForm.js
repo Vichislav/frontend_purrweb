@@ -79,32 +79,17 @@ function RegistrationForm() {
         document.getElementById('eye_second').classList.remove('cross_Block')
     }
 
-    const passwordVisible = () => {
-        const passAtr = document.getElementById('input_pas')
-        if (passAtr.type === "password") {
-            passAtr.type = "text"; /*открываем текст*/
-            document.getElementById('eye_img').classList.add('cross_Block')
-            document.getElementById('eye_open_img').classList.remove('cross_Block')
-
-        } else {
-            passAtr.type = "password"; /*закрываем текст*/
-            document.getElementById('eye_open_img').classList.add('cross_Block')
-            document.getElementById('eye_img').classList.remove('cross_Block')
-        }
-    }
-
-    const secondPasswordVisible = () => {
-        const passAtr = document.getElementById('input_second_pas')
-        if (passAtr.type === "password") {
-            passAtr.type = "text"; /*открываем текст*/
-            document.getElementById('eye_second_img').classList.add('cross_Block')
-            document.getElementById('eye_second_open_img').classList.remove('cross_Block')
-
-        } else {
-            passAtr.type = "password"; /*закрываем текст*/
-            document.getElementById('eye_second_open_img').classList.add('cross_Block')
-            document.getElementById('eye_second_img').classList.remove('cross_Block')
-        }
+    const everyPasswordVisible = (input, eye, eyeOpen) => {
+        const passAtr = document.getElementById(`${input}`)
+            if (passAtr.type === "password") {
+                passAtr.type = "text"; /*открываем текст*/
+                document.getElementById(`${eye}`).classList.add('cross_Block')
+                document.getElementById(`${eyeOpen}`).classList.remove('cross_Block')
+            } else {
+                passAtr.type = "password"; /*закрываем текст*/
+                document.getElementById(`${eyeOpen}`).classList.add('cross_Block')
+                document.getElementById(`${eye}`).classList.remove('cross_Block')
+            }
     }
 
     const clearPassword = () => {
@@ -125,7 +110,6 @@ function RegistrationForm() {
             document.querySelector('.wrap__Container_Bottom_Btn').style.backgroundColor = "#466EFA"
             /*document.getElementById('input_email').classList.remove('red_border');
             document.getElementById('crossEmail').classList.add('cross_Block');*/
-
         }
     }
 
@@ -137,56 +121,55 @@ function RegistrationForm() {
 
     }
 
-    const ValidEmail = () => {
-        /*чистим от красного, если оно есть*/
-        if(document.getElementById('crossEmail')) {
-            document.getElementById('crossEmail').classList.add('cross_Block');
-            document.getElementById('input_email').classList.remove('red_border');
-        }
-        /*красим в зеленный, если оно отрисовалось*/
+    const getGreenEmail = () => {
         if (dirtyEmailCount) {
-            document.getElementById('markEmail').classList.remove('cross_Block');
-            document.getElementById('input_email').classList.add('green_border');
-        }
-        /*скрываем сообщение об ошибке*/
-        if(document.getElementById('EmailErrorText')) {
-            document.getElementById('EmailErrorText').classList.add('hiddenDiv');
+            document.getElementById(`markEmail`).classList.remove('cross_Block');
+            document.getElementById(`input_email`).classList.add('green_border');
         }
     }
-
-    const ValidPassword = () => {
-        /*чистим от красного, если оно есть*/
-        if(document.getElementById('crossPassword')) {
-            document.getElementById('crossPassword').classList.add('cross_Block');
-            document.getElementById('input_pas').classList.remove('red_border');
-        }
-        /*красим в зеленный, если оно отрисовалось*/
+    const getGreenPassword = () => {
         if (dirtyPasswordCount) {
-            document.getElementById('markPassword').classList.remove('cross_Block');
-            document.getElementById('input_pas').classList.add('green_border');
-        }
-        /*скрываем сообщение об ошибке*/
-        if(document.getElementById('PasErrorText')) {
-            document.getElementById('PasErrorText').classList.add('hiddenDiv');
+            document.getElementById(`markPassword`).classList.remove('cross_Block');
+            document.getElementById(`input_pas`).classList.add('green_border');
         }
     }
-
-    const ValidSecondPassword = () => {
-        /*убираем крестик если он есть чистим от красного*/
-        if (document.getElementById('crossSecondPassword')) {
-            document.getElementById('crossSecondPassword').classList.add('cross_Block')
-            document.getElementById('input_second_pas').classList.remove('red_border');
-        }
+    const getGreenSecondPassword = () => {
         if (dirtySecondPasswordCount) {
-            document.getElementById('markSecondPassword').classList.remove('cross_Block');
-            document.getElementById('input_second_pas').classList.add('green_border');
-        }
-        /*скрываем сообщение об ошибке*/
-        if (document.getElementById('2PasErrorText')) {
-            document.getElementById('2PasErrorText').classList.add('hiddenDiv');
+            document.getElementById(`markSecondPassword`).classList.remove('cross_Block');
+            document.getElementById(`input_second_pas`).classList.add('green_border');
         }
     }
 
+    const validInput = (cross, input, errorText) => {
+        const element = document.getElementById(`${input}`)
+        if(element){
+            /*чистим от красного, если оно есть*/
+            if(document.getElementById(`${cross}`)) {
+                document.getElementById(`${cross}`).classList.add('cross_Block');
+                document.getElementById(`${input}`).classList.remove('red_border');
+            }
+            /*скрываем сообщение об ошибке*/
+            if(document.getElementById(`${errorText}`)) {
+                document.getElementById(`${errorText}`).classList.add('hiddenDiv');
+            }
+        }
+    }
+    //validInput('crossEmail', 'input_email', 'dirtyEmailCount', 'markEmail', 'EmailErrorText')
+    //validInput('crossPassword', 'input_pas', 'dirtyPasswordCount', 'markPassword', 'PasErrorText')
+    //validInput('crossSecondPassword', 'input_second_pas', 'dirtySecondPasswordCount', 'markSecondPassword', '2PasErrorText')
+
+    const validEmail = () => {
+        validInput('crossEmail', 'input_email', 'EmailErrorText')
+        getGreenEmail()
+    }
+    const validPassword = () => {
+        validInput('crossPassword', 'input_pas', 'PasErrorText')
+        getGreenPassword()
+    }
+    const validSecondPassword = () => {
+        validInput('crossSecondPassword', 'input_second_pas', '2PasErrorText')
+        getGreenSecondPassword()
+    }
     const RemoveAllGreenMarks = () => {
         /*убираем галочку, чистим от зеленого, если оно есть поле Email*/
         if (document.getElementById('markEmail')) {
@@ -323,7 +306,7 @@ function RegistrationForm() {
                                id="input_pas" type="text" className="wrap__Container_Middle_Password_Input"
                                placeholder="введите 8 значный пароль"/>
                         <div className="wrap__Container_Middle_Label_Password_Btn">
-                            <div id="eye" className="wrap__Container_Middle_Eye cross_Block" onClick={passwordVisible}>
+                            <div id="eye" className="wrap__Container_Middle_Eye cross_Block" onClick={() => everyPasswordVisible('input_pas', 'eye_img', 'eye_open_img')}>
                                 <img
                                     id="eye_img"
                                     className="wrap__Container_Middle_img cross_Block"
@@ -361,9 +344,9 @@ function RegistrationForm() {
                         {dirtyFields?.password && onDirtyPasswordCount()}
                         {dirtyFields?.password_again && onSecondDirtyPasswordCount()}
                         {errors?.email && showCross('markEmail', 'crossEmail', 'input_email', 'EmailErrorText')}
-                        {!errors?.email && ValidEmail()}
+                        {!errors?.email && validEmail()}
                         {errors?.password && showCross('markPassword', 'crossPassword',  'input_pas', 'PasErrorText')}
-                        {!errors?.password && ValidPassword()}
+                        {!errors?.password && validPassword()}
                     </div>
                     <label className="wrap__Container_Middle_SecPassword">
                         Повтор пароля
@@ -374,7 +357,7 @@ function RegistrationForm() {
                                )}
                                placeholder="Повторите пароль"/>
                         <div className="wrap__Container_Middle_Label_Password_Btn">
-                            <div id="eye_second" className="wrap__Container_Middle_Eye cross_Block" onClick={secondPasswordVisible}>
+                            <div id="eye_second" className="wrap__Container_Middle_Eye cross_Block" onClick={() => everyPasswordVisible('input_second_pas', 'eye_second_img', 'eye_second_open_img')}>
                                 <img
                                     id="eye_second_img"
                                     className="wrap__Container_Middle_img cross_Block"
@@ -408,7 +391,7 @@ function RegistrationForm() {
                     <div className="wrap__Container_Middle_Error">
                         {errors?.password_again && showCross('markSecondPassword', 'crossSecondPassword',  'input_second_pas', '2PasErrorText')}
                         {dirtyFields?.password_again && showPasswordSecondEye()}
-                        {!errors?.password_again && ValidSecondPassword()}
+                        {!errors?.password_again && validSecondPassword()}
                     </div>
                 </div>
                 <div className="wrap__Container_Bottom">
